@@ -1,0 +1,20 @@
+FROM bpi-back-php-base
+
+COPY ./.docker/bootstrap-permissions.sh /bootstrap-permissions.sh
+
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+
+RUN /bootstrap-permissions.sh
+
+RUN \
+    echo "opcache.enable = 0" >> /usr/local/etc/php/conf.d/999-app.ini && \
+    echo "memory_limit = 128M" >> /usr/local/etc/php/conf.d/999-app.ini
+RUN \
+    echo "request_slowlog_timeout = 5" >> /usr/local/etc/php-fpm.d/www.conf && \
+    echo "pm = static" >> /usr/local/etc/php-fpm.d/www.conf && \
+    echo "php_admin_value[memory_limit] = 48M" >> /usr/local/etc/php-fpm.d/www.conf
+
+USER docker
+
+CMD ["/entrypoint.sh"]

@@ -1,0 +1,22 @@
+FROM bpi-back-php-base
+
+COPY ./.docker/bootstrap-permissions.sh /bootstrap-permissions.sh
+
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+
+RUN /bootstrap-permissions.sh
+
+COPY .docker/php/entrypoint.prod.sh /entrypoint.sh
+
+COPY --chown=docker:docker . /app
+
+RUN \
+    echo "memory_limit = 128M" >> /usr/local/etc/php/conf.d/999-app.ini
+RUN \
+    echo "pm = static" >> /usr/local/etc/php-fpm.d/www.conf && \
+    echo "php_admin_value[memory_limit] = 48M" >> /usr/local/etc/php-fpm.d/www.conf
+
+USER docker
+
+CMD ["/entrypoint.sh"]

@@ -1,0 +1,80 @@
+version: '3.9'
+
+networks:
+  bpi-back:
+
+volumes:
+  postgres_volume:
+    driver: local
+
+services:
+  php:
+    container_name: bpi-back-php
+    entrypoint: /entrypoint.sh
+    env_file:
+      - .env
+    build:
+      context: ./
+      dockerfile: ./.docker/php/dockerfile.local
+    volumes:
+      - "${HOME}/.cache:/home/docker/.cache"
+      - "${HOME}/.composer:/home/docker/.composer"
+      - "${HOME}/.npm:/home/docker/.npm"
+      - ./.docker/php/entrypoint.local.sh:/entrypoint.sh
+      - ./.:/app
+    depends_on:
+      - postgres
+    expose:
+      - 9000
+      - 9009
+    networks:
+      - bpi-back
+
+  nginx:
+    container_name: bpi-back-nginx
+    build:
+      context: ./
+      dockerfile: ./.docker/nginx/dockerfile
+      args:
+        - SITE_HOST
+    volumes:
+      - "${HOME}/.cache:/home/docker/.cache"
+      - "${HOME}/.composer:/home/docker/.composer"
+      - "${HOME}/.npm:/home/docker/.npm"
+      - ./.:/app
+    depends_on:
+      - php
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - bpi-back
+
+  postgres:
+    container_name: bpi-back-postgres
+    env_file:
+      - .env
+    build:
+      context: ./
+      dockerfile: ./.docker/postgres/dockerfile
+    volumes:
+      - "${HOME}/.cache:/home/docker/.cache"
+      - "${HOME}/.composer:/home/docker/.composer"
+      - "${HOME}/.npm:/home/docker/.npm"
+      - postgres_volume:/var/lib/pgsql
+    expose:
+      - 5432
+    ports:
+      - "5432:5432"
+    networks:
+      - bpi-back
+
+  swagger:
+    image: swaggerapi/swagger-ui
+    container_name: bpi-back-swagger
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./swagger/swagger.yaml:/usr/share/nginx/html/swagger.yaml
+    environment:
+      URLS: "[ { 'url': 'swagger.yaml', 'name': 'Best Private Investor' } ]"

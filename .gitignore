@@ -1,0 +1,19 @@
+*.map
+*.log
+.directory
+.bash_history
+.env
+docker-compose.yml
+package-lock.json
+npm-debug.log
+.idea
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###

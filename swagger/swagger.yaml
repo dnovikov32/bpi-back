@@ -1,0 +1,8 @@
+openapi: 3.0.3
+info:
+  title: Best Private Investor
+  version: 0.0.1
+servers:
+  - url: https://bpi-back.docker/api/v1
+paths:
+
