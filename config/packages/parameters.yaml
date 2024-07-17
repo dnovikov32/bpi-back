@@ -1,0 +1,3 @@
+parameters:
+  app.db.dsn: 'postgresql://%env(POSTGRES_USER)%:%env(POSTGRES_PASSWORD)%@%env(POSTGRES_HOST)%:%env(POSTGRES_PORT)%/%env(POSTGRES_DB)%'
+  app.site.base_url: 'https://%env(SITE_HOST)%'
