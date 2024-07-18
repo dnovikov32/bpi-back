@@ -6,6 +6,7 @@ namespace App\Console\Share\Import;
 
 use App\Common\Importer\ImporterInterface;
 use App\Common\Importer\ImportOptionsInterface;
+use App\Domain\Instrument\Factory\ShareFactory;
 use App\Domain\Instrument\Model\Share;
 use App\Domain\Instrument\Service\ShareSaver;
 use DateTimeImmutable;
@@ -24,33 +25,37 @@ final class Importer implements ImporterInterface, LoggerAwareInterface
 
     public function __construct(
         private readonly TinkoffClientsFactory $tinkoffClientsFactory,
+        private readonly ShareFactory $shareFactory,
         private readonly ShareSaver $shareSaver,
     ) {
     }
 
     /**
+     * @param Options $options
+     *
      * @throws Exception
      */
     public function import(ImportOptionsInterface $options): void
     {
         /** @var TinkoffShare[] $instruments */
-        $instruments = $this->fetchSharesData();
+        $instruments = $this->fetchSharesData($options);
+
+        $progressBar = $options->getProgressBar();
+        $progressBar?->setMaxSteps(count($instruments));
 
         foreach ($instruments as $instrument) {
-            $this->shareSaver->create(
-                $this->createShare($instrument)
-            );
+            $this->shareSaver->updateOrCreate($this->createShare($instrument));
+            $progressBar?->advance();
         }
     }
 
     /**
-     * @return Traversable<TinkoffShare>
-     *
      * @throws Exception
      */
-    private function fetchSharesData(): Traversable
+    private function fetchSharesData(Options $options): Traversable
     {
-        $request = new InstrumentsRequest();
+        $request = (new InstrumentsRequest())
+            ->setInstrumentStatus($options->getInstrumentStatus());
 
         /** @var SharesResponse $response */
         list($response, $status) = $this->tinkoffClientsFactory
@@ -58,12 +63,12 @@ final class Importer implements ImporterInterface, LoggerAwareInterface
             ->Shares($request)
             ->wait();
 
-        return $response->getInstruments()->getIterator();
+        return $response->getInstruments();
     }
 
     private function createShare(TinkoffShare $instrument): Share
     {
-        return new Share(
+        return $this->shareFactory->create(
             figi: $instrument->getFigi(),
             ticker: $instrument->getTicker(),
             isin: $instrument->getIsin(),

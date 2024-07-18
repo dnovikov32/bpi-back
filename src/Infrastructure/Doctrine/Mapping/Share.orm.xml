@@ -14,8 +14,13 @@
         <field name="currency" column="currency" type="string" length="3" />
         <field name="name" column="name" type="string" length="255" />
         <field name="uid" column="uid" type="string" length="36" />
-        <field name="first1minCandleDate" column="first_1min_candle_date" type="datetime" nullable="true" />
-        <field name="first1dayCandleDate" column="first_1day_candle_date" type="datetime" nullable="true" />
+        <field name="first1minCandleDate" column="first_1min_candle_date" type="datetime_immutable" nullable="true" />
+        <field name="first1dayCandleDate" column="first_1day_candle_date" type="datetime_immutable" nullable="true" />
+
+        <unique-constraints>
+            <unique-constraint columns="ticker" name="share_ticker_unq" />
+            <unique-constraint columns="uid" name="share_uid_unq" />
+        </unique-constraints>
     </entity>
 
 </doctrine-mapping>

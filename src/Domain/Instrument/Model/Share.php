@@ -4,25 +4,22 @@ declare(strict_types=1);
 
 namespace App\Domain\Instrument\Model;
 
-use App\Domain\Common\Service\IdService;
 use DateTimeImmutable;
 
 final class Share
 {
-    private readonly string $id;
-
     public function __construct(
-        private readonly string $figi,
-        private readonly string $ticker,
-        private readonly string $isin,
-        private readonly int $lot,
-        private readonly string $currency,
-        private readonly string $name,
-        private readonly string $uid,
-        private readonly ?DateTimeImmutable $first1minCandleDate,
-        private readonly ?DateTimeImmutable $first1dayCandleDate,
+        private string $id,
+        private string $figi,
+        private string $ticker,
+        private string $isin,
+        private int $lot,
+        private string $currency,
+        private string $name,
+        private string $uid,
+        private ?DateTimeImmutable $first1minCandleDate,
+        private ?DateTimeImmutable $first1dayCandleDate,
     ) {
-        $this->id = IdService::generate();
     }
 
     public function getId(): string
@@ -73,5 +70,21 @@ final class Share
     public function getFirst1dayCandleDate(): ?DateTimeImmutable
     {
         return $this->first1dayCandleDate;
+    }
+
+    public function update(Share $share): Share
+    {
+        $this->figi = $share->getFigi();
+        $this->ticker = $share->getTicker();
+        $this->isin = $share->getIsin();
+        $this->lot = $share->getLot();
+        $this->currency = $share->getCurrency();
+        $this->name = $share->getName();
+        $this->uid = $share->getUid();
+        $this->name = $share->getName();
+        $this->first1minCandleDate = $share->getFirst1minCandleDate();
+        $this->first1dayCandleDate = $share->getFirst1dayCandleDate();
+
+        return $this;
     }
 }

@@ -8,7 +8,7 @@ use Symfony\Component\Uid\Ulid;
 
 final class IdService
 {
-    public static function generate(): string
+    public function generate(): string
     {
         return Ulid::generate();
     }

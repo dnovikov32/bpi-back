@@ -3,6 +3,7 @@ services:
     class: App\Console\Share\Import\Importer
     arguments:
       - '@app.infrastructure.tinkoff_api.clients_factory'
+      - '@app.domain.instrument.factory.share_factory'
       - '@app.domain.instrument.service.share_saver'
     calls:
       - setLogger: ['@logger']
