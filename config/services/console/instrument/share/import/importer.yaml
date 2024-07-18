@@ -1,6 +1,6 @@
 services:
-  app.console.share.import.importer:
-    class: App\Console\Share\Import\Importer
+  app.console.instrument.share.import.importer:
+    class: App\Console\Instrument\Share\Import\Importer
     arguments:
       - '@app.infrastructure.tinkoff_api.clients_factory'
       - '@app.domain.instrument.factory.share_factory'

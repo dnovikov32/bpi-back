@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Share\Import;
+namespace App\Console\Instrument\Share\Import;
 
 use App\Common\Importer\ImporterInterface;
 use App\Common\Importer\ImportOptionsInterface;
 use Exception;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Tinkoff\Invest\V1\InstrumentStatus;
-use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 final class Command extends SymfonyCommand implements LoggerAwareInterface
 {

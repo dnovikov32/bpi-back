@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Share\Import;
+namespace App\Console\Instrument\Share\Import;
 
 use App\Common\Importer\ImporterInterface;
 use App\Common\Importer\ImportOptionsInterface;
@@ -15,8 +15,8 @@ use Metaseller\TinkoffInvestApi2\TinkoffClientsFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Tinkoff\Invest\V1\InstrumentsRequest;
-use Tinkoff\Invest\V1\SharesResponse;
 use Tinkoff\Invest\V1\Share as TinkoffShare;
+use Tinkoff\Invest\V1\SharesResponse;
 use Traversable;
 
 final class Importer implements ImporterInterface, LoggerAwareInterface

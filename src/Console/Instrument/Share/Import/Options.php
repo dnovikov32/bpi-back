@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Share\Import;
+namespace App\Console\Instrument\Share\Import;
 
 use App\Common\Importer\ImportOptionsInterface;
 use Symfony\Component\Console\Helper\ProgressBar;

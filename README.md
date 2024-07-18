@@ -37,3 +37,8 @@ After start, application is available at http://bpi-back.docker/
 
 ## Swagger
 http://localhost:8081/
+
+
+## Commands
+
+`app:instrument:share:import`  Import all shares

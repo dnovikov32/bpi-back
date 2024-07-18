@@ -1,0 +1,9 @@
+services:
+  app.console.instrument.share.import_from_api_command:
+    class: App\Console\Instrument\Share\Import\Command
+    arguments:
+      - '@app.console.instrument.share.import.importer'
+    calls:
+      - setLogger: ['@logger']
+    tags:
+      - { name: console.command, command: 'app:instrument:share:import', description: 'Import all shares' }
