@@ -1,0 +1,8 @@
+services:
+  app.console.share.import_from_api_command:
+    class: App\Console\Share\Import\Command
+    arguments:
+      - '@app.console.share.import.importer'
+      - '@logger'
+    tags:
+      - { name: console.command, command: 'app:share:import' }

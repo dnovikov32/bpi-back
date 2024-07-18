@@ -1,0 +1,5 @@
+services:
+  app.domain.instrument.service.share_saver:
+    class: App\Domain\Instrument\Service\ShareSaver
+    arguments:
+      - '@app.domain.instrument.repository.share_repository_interface'

@@ -1,0 +1,6 @@
+services:
+  app.infrastructure.tinkoff_api.clients_factory:
+    class: Metaseller\TinkoffInvestApi2\TinkoffClientsFactory
+    factory: [null, 'create']
+    arguments:
+      $api_token: '%app.tinkoff.api.token%'
