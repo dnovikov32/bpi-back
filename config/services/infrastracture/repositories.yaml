@@ -1,0 +1,8 @@
+services:
+  # Instrument
+  app.infrastructure.doctrine.repository.share_repository:
+    class: App\Infrastructure\Doctrine\Repository\ShareRepository
+    arguments:
+      - '@doctrine'
+      - 'App\Domain\Instrument\Model\Share'
+    tags: [ 'doctrine.repository_service' ]

@@ -1,0 +1,21 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Domain\Instrument\Model\Share" table="share" repository-class="App\Infrastructure\Doctrine\Repository\ShareRepository">
+        <id name="id" column="id" type="string" length="26">
+            <generator strategy="NONE" />
+        </id>
+        <field name="figi" column="figi" type="string" length="12" />
+        <field name="ticker" column="ticker" type="string" length="32" />
+        <field name="isin" column="isin" type="string" length="12" />
+        <field name="lot" column="lot" type="integer" />
+        <field name="currency" column="currency" type="string" length="3" />
+        <field name="name" column="name" type="string" length="255" />
+        <field name="uid" column="uid" type="string" length="36" />
+        <field name="first1minCandleDate" column="first_1min_candle_date" type="datetime" nullable="true" />
+        <field name="first1dayCandleDate" column="first_1day_candle_date" type="datetime" nullable="true" />
+    </entity>
+
+</doctrine-mapping>

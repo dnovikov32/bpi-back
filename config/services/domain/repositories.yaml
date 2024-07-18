@@ -1,0 +1,4 @@
+services:
+  # Instrument
+  app.domain.instrument.repository.share_repository_interface:
+    alias: app.infrastructure.doctrine.repository.share_repository
