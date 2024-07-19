@@ -1,4 +1,13 @@
 services:
+  app.infrastructure.http_client:
+    class: GuzzleHttp\Client
+    arguments:
+      - timeout: '%env(HTTP_TRANSPORT_TIMEOUT)%'
+        connect_timeout: '%env(HTTP_TRANSPORT_CONNECT_TIMEOUT)%'
+        verify: '%env(bool:HTTP_TRANSPORT_SSL_VERIFY)%'
+        headers:
+          User-Agent: '%env(HTTP_TRANSPORT_USER_AGENT)%'
+
   app.infrastructure.tinkoff_api.clients_factory:
     class: Metaseller\TinkoffInvestApi2\TinkoffClientsFactory
     factory: [null, 'create']
