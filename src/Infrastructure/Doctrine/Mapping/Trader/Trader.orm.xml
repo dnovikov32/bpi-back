@@ -1,0 +1,19 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Domain\Trader\Model\Trader" table="trader_trader" repository-class="App\Infrastructure\Doctrine\Repository\TraderRepository">
+        <id name="id" column="id" type="string" length="26">
+            <generator strategy="NONE" />
+        </id>
+        <field name="moexId" column="moex_id" type="integer" />
+        <field name="name" column="name" length="32" />
+        <field name="year" column="year" length="4" />
+
+        <unique-constraints>
+            <unique-constraint columns="moex_id,year" name="trader_trader_moex_id_year_idx" />
+        </unique-constraints>
+    </entity>
+
+</doctrine-mapping>

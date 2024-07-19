@@ -21,6 +21,12 @@ doctrine:
       Instrument:
         type: xml
         is_bundle: false
-        dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping'
+        dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping/Instrument'
         prefix: 'App\Domain\Instrument\Model'
+        alias: ~
+      Trader:
+        type: xml
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping/Trader'
+        prefix: 'App\Domain\Trader\Model'
         alias: ~

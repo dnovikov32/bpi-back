@@ -2,3 +2,7 @@ services:
   # Instrument
   app.domain.instrument.repository.share_repository_interface:
     alias: app.infrastructure.doctrine.repository.share_repository
+
+  # Trader
+  app.domain.instrument.repository.trader_repository_interface:
+    alias: app.infrastructure.doctrine.repository.trader_repository

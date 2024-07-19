@@ -6,3 +6,11 @@ services:
       - '@doctrine'
       - 'App\Domain\Instrument\Model\Share'
     tags: [ 'doctrine.repository_service' ]
+
+  # Trader
+  app.infrastructure.doctrine.repository.trader_repository:
+    class: App\Infrastructure\Doctrine\Repository\TraderRepository
+    arguments:
+      - '@doctrine'
+      - 'App\Domain\Trader\Model\Trader'
+    tags: [ 'doctrine.repository_service' ]
