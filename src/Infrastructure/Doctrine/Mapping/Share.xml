@@ -7,13 +7,13 @@
         <id name="id" column="id" type="string" length="26">
             <generator strategy="NONE" />
         </id>
-        <field name="figi" column="figi" type="string" length="12" />
-        <field name="ticker" column="ticker" type="string" length="32" />
-        <field name="isin" column="isin" type="string" length="12" />
+        <field name="figi" column="figi" length="12" />
+        <field name="ticker" column="ticker" length="32" />
+        <field name="isin" column="isin" length="12" />
         <field name="lot" column="lot" type="integer" />
-        <field name="currency" column="currency" type="string" length="3" />
-        <field name="name" column="name" type="string" length="255" />
-        <field name="uid" column="uid" type="string" length="36" />
+        <field name="currency" column="currency" length="3" />
+        <field name="name" column="name" length="255" />
+        <field name="uid" column="uid" length="36" />
         <field name="first1minCandleDate" column="first_1min_candle_date" type="datetime_immutable" nullable="true" />
         <field name="first1dayCandleDate" column="first_1day_candle_date" type="datetime_immutable" nullable="true" />
 
