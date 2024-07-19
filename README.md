@@ -2,9 +2,9 @@
 View the results of the Best Private Investor competition
 
 ## Configuration
-- PHP 8.2
-- Postgres latest
-- Nginx latest
+- PHP 8.1
+- Postgres 16.3
+- Nginx 1.27.0
 
 ## Local development
 
