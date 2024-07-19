@@ -42,3 +42,9 @@ http://localhost:8081/
 ## Commands
 
 `app:instrument:share:import`  Import all shares
+
+
+## Info
+ Статистика конкурса "лучший частный инвестор 2022 года"  
+https://investor.moex.com/ru/statistics/2022/  
+http://ftp.moex.com/pub/info/stats_contest/2022/

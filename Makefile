@@ -35,6 +35,13 @@ clean: ## Clean containers and application cache
 	@rm -rf "./var/log"
 	@rm -rf "./var/sessions"
 
+.PHONY: test
+test: ## Runs all tests
+	@USERID=$$(id -u) GROUPID=$$(id -g) docker compose exec php \
+		php /app/vendor/phpunit/phpunit/phpunit \
+		--testdox \
+		--configuration /app/phpunit.xml
+
 .PHONY: phpstan
 phpstan: ## Run phpstan
 	@echo -e "\033[33mphpstan\033[0m"
