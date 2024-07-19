@@ -1,5 +1,5 @@
 services:
-  app.console.instrument.share.import_from_api_command:
+  app.console.instrument.share.import.command:
     class: App\Console\Instrument\Share\Import\Command
     arguments:
       - '@app.console.instrument.share.import.importer'

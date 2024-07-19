@@ -1,0 +1,23 @@
+services:
+  app.console.trader.trader.import.fetcher:
+    class: App\Infrastructure\Fetcher\BaseFetcher
+    arguments:
+      - '@app.console.trader.trader.import.fetcher.http_client'
+      - '@app.console.trader.trader.import.fetcher.response_transformer'
+    calls:
+      - setLogger: ['@logger']
+
+  app.console.trader.trader.import.fetcher.http_client:
+    class: App\Infrastructure\Fetcher\HttpClient\HttpClient
+    arguments:
+      - '@app.infrastructure.http_client'
+      - '@app.console.trader.trader.import.fetcher.request_builder'
+
+  app.console.trader.trader.import.fetcher.request_builder:
+    class: App\Console\Trader\Trader\Import\Fetcher\RequestBuilder
+    arguments:
+      - 'GET'
+      - '%app.moex.base_url%'
+
+  app.console.trader.trader.import.fetcher.response_transformer:
+    class: App\Console\Trader\Trader\Import\Fetcher\ResponseTransformer

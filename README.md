@@ -41,7 +41,15 @@ http://localhost:8081/
 
 ## Commands
 
-`app:instrument:share:import`  Import all shares
+Import all shares fromTinkoff API
+```bash
+bin/console app:instrument:share:import`  
+```
+
+Import all traders by 2022 year
+```bash
+bin/console app:trader:trader:import 2022
+```
 
 
 ## Info

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Instrument\Share\Import;
+namespace App\Console\Trader\Trader\Import;
 
 use App\Common\Importer\ImporterInterface;
 use App\Common\Importer\ImportOptionsInterface;
@@ -11,10 +11,10 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Tinkoff\Invest\V1\InstrumentStatus;
 
 final class Command extends SymfonyCommand implements LoggerAwareInterface
 {
@@ -22,24 +22,42 @@ final class Command extends SymfonyCommand implements LoggerAwareInterface
 
     public function __construct(
         private readonly ImporterInterface $apiImporter,
+        private readonly string $defaultFileName
     ) {
         parent::__construct();
     }
+
+    protected function configure(): void
+    {
+        $this->addArgument(
+            'year',
+            InputArgument::REQUIRED,
+            'Year',
+        );
+
+        $this->addArgument(
+            'fileName',
+            InputArgument::OPTIONAL,
+            sprintf('File name (default: %s)', $this->defaultFileName),
+            $this->defaultFileName
+        );
+    }
+
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $io->title('Shares import from API started');
+        $io->title('Traders import from API started');
 
         try {
-            $progressBar = new ProgressBar($output);
+            $progressBar = new ProgressBar($output, 10);
             $progressBar->start();
 
-            $this->apiImporter->import($this->getImportOptions($progressBar));
+            $this->apiImporter->import($this->getImportOptions($input, $progressBar));
 
             $progressBar->finish();
         } catch (Exception $e) {
             $this->logger->error(
-                sprintf('Shares import failed %s from API. %s', $this->getName(), $e->getMessage()),
+                sprintf('Traders import failed %s from API. %s', $this->getName(), $e->getMessage()),
                 ['exception' => $e]
             );
 
@@ -48,15 +66,16 @@ final class Command extends SymfonyCommand implements LoggerAwareInterface
             return self::FAILURE;
         }
 
-        $io->success('Shares import completed');
+        $io->success('Traders import completed');
 
         return self::SUCCESS;
     }
 
-    private function getImportOptions(ProgressBar $progressBar): ImportOptionsInterface
+    private function getImportOptions(InputInterface $input, ProgressBar $progressBar): ImportOptionsInterface
     {
         return new Options(
-            instrumentStatus: InstrumentStatus::INSTRUMENT_STATUS_BASE,
+            year: (string) $input->getArgument('year'),
+            fileName: (string) $input->getArgument('fileName'),
             progressBar: $progressBar,
         );
     }

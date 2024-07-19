@@ -4,3 +4,4 @@ parameters:
   app.tinkoff.api.token: '%env(TINKOFF_API_TOKEN)%'
 
   app.moex.base_url: 'http://%env(MOEX_HOST)%'
+  app.moex.trader.file_name: 'trader.csv'
