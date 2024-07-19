@@ -11,12 +11,12 @@ final class Version20240718144712 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Create table share';
+        return 'Create table instrument_share';
     }
 
     public function up(Schema $schema): void
     {
-        $this->addSql('CREATE TABLE share (
+        $this->addSql('CREATE TABLE instrument_share (
             id VARCHAR(26) NOT NULL,
             figi VARCHAR(12) NOT NULL,
             ticker VARCHAR(32) NOT NULL,
@@ -30,15 +30,15 @@ final class Version20240718144712 extends AbstractMigration
             PRIMARY KEY(id))
         ');
 
-        $this->addSql('CREATE UNIQUE INDEX share_ticker_unq ON share (ticker)');
-        $this->addSql('CREATE UNIQUE INDEX share_uid_unq ON share (uid)');
+        $this->addSql('CREATE UNIQUE INDEX instrument_share_ticker_unq ON instrument_share (ticker)');
+        $this->addSql('CREATE UNIQUE INDEX instrument_share_uid_unq ON instrument_share (uid)');
 
-        $this->addSql('COMMENT ON COLUMN share.first_1min_candle_date IS \'(DC2Type:datetime_immutable)\'');
-        $this->addSql('COMMENT ON COLUMN share.first_1day_candle_date IS \'(DC2Type:datetime_immutable)\'');
+        $this->addSql('COMMENT ON COLUMN instrument_share.first_1min_candle_date IS \'(DC2Type:datetime_immutable)\'');
+        $this->addSql('COMMENT ON COLUMN instrument_share.first_1day_candle_date IS \'(DC2Type:datetime_immutable)\'');
     }
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DROP TABLE share');
+        $this->addSql('DROP TABLE instrument_share');
     }
 }

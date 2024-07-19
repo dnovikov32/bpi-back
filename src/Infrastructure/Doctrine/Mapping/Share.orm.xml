@@ -3,7 +3,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Domain\Instrument\Model\Share" table="share" repository-class="App\Infrastructure\Doctrine\Repository\ShareRepository">
+    <entity name="App\Domain\Instrument\Model\Share" table="instrument_share" repository-class="App\Infrastructure\Doctrine\Repository\ShareRepository">
         <id name="id" column="id" type="string" length="26">
             <generator strategy="NONE" />
         </id>
@@ -18,8 +18,8 @@
         <field name="first1dayCandleDate" column="first_1day_candle_date" type="datetime_immutable" nullable="true" />
 
         <unique-constraints>
-            <unique-constraint columns="ticker" name="share_ticker_unq" />
-            <unique-constraint columns="uid" name="share_uid_unq" />
+            <unique-constraint columns="ticker" name="instrument_share_ticker_unq" />
+            <unique-constraint columns="uid" name="instrument_share_uid_unq" />
         </unique-constraints>
     </entity>
 
