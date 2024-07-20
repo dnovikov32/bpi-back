@@ -7,12 +7,12 @@
         <id name="id" column="id" type="string" length="26">
             <generator strategy="NONE" />
         </id>
+        <field name="year" column="year" length="4" />
         <field name="moexId" column="moex_id" type="integer" />
         <field name="name" column="name" length="32" />
-        <field name="year" column="year" length="4" />
 
         <unique-constraints>
-            <unique-constraint columns="moex_id,year" name="trader_trader_moex_id_year_idx" />
+            <unique-constraint columns="year,moex_id" name="trader_trader_year_moex_id_idx" />
         </unique-constraints>
     </entity>
 

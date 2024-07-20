@@ -18,12 +18,12 @@ final class Version20240719210047 extends AbstractMigration
     {
         $this->addSql('CREATE TABLE trader_trader (
             id VARCHAR(26) NOT NULL,
+            year VARCHAR(4) NOT NULL,
             moex_id INT NOT NULL,
             name VARCHAR(32) NOT NULL,
-            year VARCHAR(4) NOT NULL,
             PRIMARY KEY(id))
         ');
-        $this->addSql('CREATE UNIQUE INDEX trader_trader_moex_id_year_idx ON trader_trader (moex_id, year)');
+        $this->addSql('CREATE UNIQUE INDEX trader_trader_year_moex_id_idx ON trader_trader (year, moex_id)');
     }
 
     public function down(Schema $schema): void
