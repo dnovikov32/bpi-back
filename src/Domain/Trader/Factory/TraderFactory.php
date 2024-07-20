@@ -15,16 +15,16 @@ final class TraderFactory
     }
 
     public function create(
+        string $year,
         int $moexId,
         string $name,
-        string $year,
     ): Trader
     {
         return new Trader(
             id: $this->idService->generate(),
+            year: $year,
             moexId: $moexId,
             name: $name,
-            year: $year,
         );
     }
 }

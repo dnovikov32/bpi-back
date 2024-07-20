@@ -18,15 +18,15 @@ class TraderRepository extends ServiceEntityRepository implements TraderReposito
         $this->getEntityManager()->flush();
     }
 
-    public function findByMoexIdAndYear(int $moexId, string $year): Trader
+    public function findByYearAndMoexId(string $year, int $moexId): Trader
     {
         try {
             return $this->createQueryBuilder('t')
-                ->where('t.moexId = :modexId')
                 ->andWhere('t.year = :year')
+                ->andWhere('t.moexId = :modexId')
                 ->setParameters([
-                    ':modexId' => $moexId,
                     ':year' => $year,
+                    ':modexId' => $moexId,
                 ])
                 ->getQuery()
                 ->getSingleResult();

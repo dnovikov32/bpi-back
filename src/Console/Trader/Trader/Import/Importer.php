@@ -52,9 +52,9 @@ final class Importer implements ImporterInterface, LoggerAwareInterface
     private function createTrader(TraderDto $traderDto): Trader
     {
         return $this->traderFactory->create(
+            year: $traderDto->year,
             moexId: $traderDto->id,
             name: $traderDto->name,
-            year: $traderDto->year,
         );
     }
 

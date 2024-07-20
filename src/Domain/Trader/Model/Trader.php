@@ -8,15 +8,20 @@ final class Trader
 {
     public function __construct(
         private string $id,
+        private string $year,
         private int $moexId,
         private string $name,
-        private string $year,
     ) {
     }
 
     public function getId(): string
     {
         return $this->id;
+    }
+
+    public function getYear(): string
+    {
+        return $this->year;
     }
 
     public function getMoexId(): int
@@ -29,16 +34,11 @@ final class Trader
         return $this->name;
     }
 
-    public function getYear(): string
-    {
-        return $this->year;
-    }
-
     public function update(Trader $trader): Trader
     {
+        $this->year = $trader->getYear();
         $this->moexId = $trader->getMoexId();
         $this->name = $trader->getName();
-        $this->year = $trader->getYear();
 
         return $this;
     }

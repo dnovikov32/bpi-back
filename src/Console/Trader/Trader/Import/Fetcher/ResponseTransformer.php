@@ -35,9 +35,9 @@ class ResponseTransformer implements ResponseTransformerInterface
                 }
 
                 $traders[] = new Trader(
+                    year: $request->year,
                     id: (int) $columns[1],
                     name: mb_convert_encoding($columns[0], self::TO_ENCODING, self::FROM_ENCODING),
-                    year: $request->year,
                 );
             }
 

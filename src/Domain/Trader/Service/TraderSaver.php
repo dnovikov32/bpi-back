@@ -23,7 +23,7 @@ final class TraderSaver
     public function updateOrCreate(Trader $trader): void
     {
         try {
-            $existedTrader = $this->traderRepository->findByMoexIdAndYear($trader->getMoexId(), $trader->getYear());
+            $existedTrader = $this->traderRepository->findByYearAndMoexId($trader->getYear(), $trader->getMoexId());
             $existedTrader->update($trader);
             $this->traderRepository->save($existedTrader);
         } catch (EntityNotFoundException) {
