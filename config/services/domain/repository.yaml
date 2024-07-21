@@ -4,5 +4,5 @@ services:
     alias: app.infrastructure.doctrine.repository.share_repository
 
   # Trader
-  app.domain.instrument.repository.trader_repository_interface:
+  app.domain.trader.repository.trader_repository_interface:
     alias: app.infrastructure.doctrine.repository.trader_repository

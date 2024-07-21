@@ -23,7 +23,7 @@ class ShareRepositoryTest extends WebTestCase
     {
         parent::setUp();
 
-        /** @var shareFactory $shareFactory */
+        /** @var ShareFactory $shareFactory */
         $shareFactory = $this->getContainer()->get('app.domain.instrument.factory.share_factory');
         $this->shareFactory = $shareFactory;
 

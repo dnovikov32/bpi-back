@@ -7,4 +7,4 @@ services:
   app.domain.trader.service.trader_saver:
     class: App\Domain\Trader\Service\TraderSaver
     arguments:
-      - '@app.domain.instrument.repository.trader_repository_interface'
+      - '@app.domain.trader.repository.trader_repository_interface'
