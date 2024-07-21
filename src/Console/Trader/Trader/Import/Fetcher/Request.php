@@ -9,8 +9,7 @@ use Dnovikov32\HttpProcessBundle\Request\ApiRequestInterface;
 final class Request implements ApiRequestInterface
 {
     public function __construct(
-        public readonly string $year,
-        public readonly string $fileName,
+        public readonly string $year
     ) {
     }
 }

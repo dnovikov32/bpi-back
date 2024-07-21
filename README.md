@@ -53,6 +53,7 @@ bin/console app:trader:trader:import 2022
 
 
 ## Info
- Статистика конкурса "лучший частный инвестор 2022 года"  
-https://investor.moex.com/ru/statistics/2022/  
-http://ftp.moex.com/pub/info/stats_contest/2022/
+[Статистика конкурса ЛЧИ](https://investor.moex.com/ru/statistics/2022/)  
+[Данные конкурса ЛЧИ для выгрузки](http://ftp.moex.com/pub/info/stats_contest)  
+[Tinkoff invest api](https://tinkoff.github.io/investAPI/)
+

@@ -17,7 +17,7 @@ services:
     class: App\Console\Trader\Trader\Import\Fetcher\RequestBuilder
     arguments:
       - 'GET'
-      - '%app.moex.base_url%'
+      - '%app.moex.base_url%/:year/trader.csv'
 
   app.console.trader.trader.import.fetcher.response_transformer:
     class: App\Console\Trader\Trader\Import\Fetcher\ResponseTransformer

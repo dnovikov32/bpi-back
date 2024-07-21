@@ -10,24 +10,8 @@ use Symfony\Component\Console\Helper\ProgressBar;
 final class Options implements ImportOptionsInterface
 {
     public function __construct(
-        private readonly string $year,
-        private readonly string $fileName,
-        private readonly ?ProgressBar $progressBar,
+        public readonly string $year,
+        public readonly ?ProgressBar $progressBar,
     ) {
-    }
-
-    public function getYear(): string
-    {
-        return $this->year;
-    }
-
-    public function getFileName(): string
-    {
-        return $this->fileName;
-    }
-
-    public function getProgressBar(): ?ProgressBar
-    {
-        return $this->progressBar;
     }
 }

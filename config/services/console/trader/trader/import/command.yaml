@@ -3,7 +3,6 @@ services:
     class: App\Console\Trader\Trader\Import\Command
     arguments:
       - '@app.console.trader.trader.import.importer'
-      - '%app.moex.trader.file_name%'
     calls:
       - setLogger: ['@logger']
     tags:

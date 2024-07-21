@@ -21,8 +21,7 @@ final class Command extends SymfonyCommand implements LoggerAwareInterface
     use LoggerAwareTrait;
 
     public function __construct(
-        private readonly ImporterInterface $apiImporter,
-        private readonly string $defaultFileName
+        private readonly ImporterInterface $apiImporter
     ) {
         parent::__construct();
     }
@@ -33,13 +32,6 @@ final class Command extends SymfonyCommand implements LoggerAwareInterface
             'year',
             InputArgument::REQUIRED,
             'Year',
-        );
-
-        $this->addArgument(
-            'fileName',
-            InputArgument::OPTIONAL,
-            sprintf('File name (default: %s)', $this->defaultFileName),
-            $this->defaultFileName
         );
     }
 
@@ -75,7 +67,6 @@ final class Command extends SymfonyCommand implements LoggerAwareInterface
     {
         return new Options(
             year: (string) $input->getArgument('year'),
-            fileName: (string) $input->getArgument('fileName'),
             progressBar: $progressBar,
         );
     }

@@ -34,13 +34,10 @@ final class Importer implements ImporterInterface, LoggerAwareInterface
     {
         /** @var Response $response */
         $response = $this->fetcher->fetch(
-            new Request(
-                year: $options->getYear(),
-                fileName: $options->getFileName()
-            )
+            new Request($options->year)
         );
 
-        $progressBar = $options->getProgressBar();
+        $progressBar = $options->progressBar ?? null;
         $progressBar?->setMaxSteps(count($response->traders));
 
         foreach ($response->traders as $traderDto) {
