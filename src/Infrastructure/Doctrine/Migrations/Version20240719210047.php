@@ -18,7 +18,7 @@ final class Version20240719210047 extends AbstractMigration
     {
         $this->addSql('CREATE TABLE trader_trader (
             id VARCHAR(26) NOT NULL,
-            year VARCHAR(4) NOT NULL,
+            year SMALLINT NOT NULL,
             moex_id INT NOT NULL,
             name VARCHAR(32) NOT NULL,
             PRIMARY KEY(id))

@@ -18,7 +18,7 @@ class TraderRepository extends ServiceEntityRepository implements TraderReposito
         $this->getEntityManager()->flush();
     }
 
-    public function findByYearAndMoexId(string $year, int $moexId): Trader
+    public function findByYearAndMoexId(int $year, int $moexId): Trader
     {
         try {
             return $this->createQueryBuilder('t')

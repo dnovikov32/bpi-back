@@ -53,7 +53,7 @@ final class Command extends SymfonyCommand implements LoggerAwareInterface
                 ['exception' => $e]
             );
 
-            $io->error(sprintf('Shares import failed: %s', $e->getMessage()));
+            $io->error(sprintf('Traders import failed: %s', $e->getMessage()));
 
             return self::FAILURE;
         }
@@ -66,7 +66,7 @@ final class Command extends SymfonyCommand implements LoggerAwareInterface
     private function getImportOptions(InputInterface $input, ProgressBar $progressBar): ImportOptionsInterface
     {
         return new Options(
-            year: (string) $input->getArgument('year'),
+            year: (int) $input->getArgument('year'),
             progressBar: $progressBar,
         );
     }

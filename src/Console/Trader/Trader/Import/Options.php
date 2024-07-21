@@ -10,7 +10,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 final class Options implements ImportOptionsInterface
 {
     public function __construct(
-        public readonly string $year,
+        public readonly int $year,
         public readonly ?ProgressBar $progressBar,
     ) {
     }

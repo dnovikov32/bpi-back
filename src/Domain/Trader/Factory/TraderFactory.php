@@ -15,7 +15,7 @@ final class TraderFactory
     }
 
     public function create(
-        string $year,
+        int $year,
         int $moexId,
         string $name,
     ): Trader

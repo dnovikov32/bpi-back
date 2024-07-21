@@ -14,5 +14,5 @@ interface TraderRepositoryInterface
     /**
      * @throws EntityNotFoundException
      */
-    public function findByYearAndMoexId(string $year, int $moexId): Trader;
+    public function findByYearAndMoexId(int $year, int $moexId): Trader;
 }

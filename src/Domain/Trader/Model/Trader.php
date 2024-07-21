@@ -8,7 +8,7 @@ final class Trader
 {
     public function __construct(
         private string $id,
-        private string $year,
+        private int $year,
         private int $moexId,
         private string $name,
     ) {
@@ -19,7 +19,7 @@ final class Trader
         return $this->id;
     }
 
-    public function getYear(): string
+    public function getYear(): int
     {
         return $this->year;
     }

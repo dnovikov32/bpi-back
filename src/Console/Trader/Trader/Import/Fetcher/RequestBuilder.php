@@ -14,6 +14,6 @@ final class RequestBuilder extends BaseRequestBuilder
      */
     public function getUrl(ApiRequestInterface $request): string
     {
-        return str_replace(':year', $request->year, parent::getUrl($request));
+        return str_replace(':year', (string) $request->year, parent::getUrl($request));
     }
 }

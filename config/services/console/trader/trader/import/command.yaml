@@ -6,4 +6,4 @@ services:
     calls:
       - setLogger: ['@logger']
     tags:
-      - { name: console.command, command: 'app:trader:trader:import', description: 'Import all traders by year' }
+      - { name: console.command, command: 'app:trader:trader:import', description: 'Import all bpi traders by year' }

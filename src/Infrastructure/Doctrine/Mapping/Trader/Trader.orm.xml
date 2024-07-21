@@ -7,7 +7,7 @@
         <id name="id" column="id" type="string" length="26">
             <generator strategy="NONE" />
         </id>
-        <field name="year" column="year" length="4" />
+        <field name="year" column="year" type="smallint" />
         <field name="moexId" column="moex_id" type="integer" />
         <field name="name" column="name" length="32" />
 
