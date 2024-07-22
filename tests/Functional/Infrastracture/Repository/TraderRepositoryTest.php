@@ -38,7 +38,7 @@ class TraderRepositoryTest extends WebTestCase
     public function testTraderCreatedSuccessfully(): void
     {
         $trader = $this->traderFactory->create(
-            year: $this->faker->year(),
+            year: (int) $this->faker->year(),
             moexId: $this->faker->randomNumber(6),
             name: $this->faker->name(),
         );
