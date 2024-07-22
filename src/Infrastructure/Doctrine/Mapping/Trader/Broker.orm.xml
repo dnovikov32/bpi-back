@@ -1,0 +1,17 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Domain\Trader\Model\Broker" table="trader_broker" repository-class="App\Infrastructure\Doctrine\Repository\BrokerRepository">
+        <id name="id" column="id" type="string" length="26">
+            <generator strategy="NONE" />
+        </id>
+        <field name="name" column="name" length="255" />
+
+        <unique-constraints>
+            <unique-constraint columns="name" name="trader_broker_name_unq" />
+        </unique-constraints>
+    </entity>
+
+</doctrine-mapping>
