@@ -21,3 +21,10 @@ services:
       - '@doctrine'
       - 'App\Domain\Trader\Model\Broker'
     tags: [ 'doctrine.repository_service' ]
+
+  app.infrastructure.doctrine.repository.result_repository:
+    class: App\Infrastructure\Doctrine\Repository\ResultRepository
+    arguments:
+      - '@doctrine'
+      - 'App\Domain\Trader\Model\Result'
+    tags: [ 'doctrine.repository_service' ]

@@ -9,3 +9,6 @@ services:
 
   app.domain.trader.repository.broker_repository_interface:
     alias: app.infrastructure.doctrine.repository.broker_repository
+
+  app.domain.trader.repository.result_repository_interface:
+    alias: app.infrastructure.doctrine.repository.result_repository
