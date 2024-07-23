@@ -12,6 +12,7 @@ doctrine:
           charset: utf8mb4
           collate: utf8mb4_unicode_ci
         url: '%app.db.dsn%'
+        use_savepoints: true # TODO: remove after update to DBAL v.4 https://github.com/dmaicher/doctrine-test-bundle
   orm:
     auto_generate_proxy_classes: '%kernel.debug%'
     enable_lazy_ghost_objects: true # TODO: what is it?
