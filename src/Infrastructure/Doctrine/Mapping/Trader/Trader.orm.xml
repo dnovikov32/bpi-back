@@ -3,7 +3,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Domain\Trader\Model\Trader" table="trader_trader" repository-class="App\Infrastructure\Doctrine\Repository\TraderRepository">
+    <entity name="App\Domain\Trader\Entity\Trader" table="trader_trader" repository-class="App\Infrastructure\Doctrine\Repository\TraderRepository">
         <id name="id" column="id" type="string" length="26">
             <generator strategy="NONE" />
         </id>

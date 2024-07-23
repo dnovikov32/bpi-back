@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Doctrine\Repository;
 
 use App\Domain\Common\Exception\EntityNotFoundException;
-use App\Domain\Trader\Model\Trader;
+use App\Domain\Trader\Entity\Trader;
 use App\Domain\Trader\Repository\TraderRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\UnexpectedResultException;

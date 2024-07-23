@@ -6,7 +6,7 @@ namespace App\Domain\Trader\Service;
 
 use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Trader\Factory\BrokerFactory;
-use App\Domain\Trader\Model\Broker;
+use App\Domain\Trader\Entity\Broker;
 use App\Domain\Trader\Repository\BrokerRepositoryInterface;
 
 final class BrokerBuilder

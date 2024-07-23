@@ -10,7 +10,7 @@ use App\Domain\Trader\Enum\MarketType;
 use App\Domain\Trader\Factory\BrokerFactory;
 use App\Domain\Trader\Factory\ResultFactory;
 use App\Domain\Trader\Factory\TraderFactory;
-use App\Domain\Trader\Model\Result;
+use App\Domain\Trader\Entity\Result;
 use App\Domain\Trader\Repository\ResultRepositoryInterface;
 use App\Tests\Resource\Fixture\ResultFixture;
 use App\Tests\Tool\DatabaseToolTrait;

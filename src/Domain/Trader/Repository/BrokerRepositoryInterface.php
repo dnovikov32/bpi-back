@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Trader\Repository;
 
 use App\Domain\Common\Exception\EntityNotFoundException;
-use App\Domain\Trader\Model\Broker;
+use App\Domain\Trader\Entity\Broker;
 
 interface BrokerRepositoryInterface
 {

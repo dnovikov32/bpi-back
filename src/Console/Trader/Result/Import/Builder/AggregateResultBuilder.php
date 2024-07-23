@@ -7,7 +7,7 @@ namespace App\Console\Trader\Result\Import\Builder;
 use App\Console\Trader\Result\Import\Dto\ImportResultDto;
 use App\Domain\Trader\Dto\ResultDto;
 use App\Domain\Trader\Enum\MarketType;
-use App\Domain\Trader\Model\Result;
+use App\Domain\Trader\Entity\Result;
 use App\Domain\Trader\Service\BrokerBuilder;
 use App\Domain\Trader\Service\TraderBuilder;
 use App\Domain\Trader\Service\ResultBuilder;

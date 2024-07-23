@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Doctrine\Repository;
 
 use App\Domain\Common\Exception\EntityNotFoundException;
-use App\Domain\Instrument\Model\Share;
+use App\Domain\Instrument\Entity\Share;
 use App\Domain\Instrument\Repository\ShareRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\UnexpectedResultException;

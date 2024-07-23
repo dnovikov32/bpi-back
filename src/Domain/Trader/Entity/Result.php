@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Trader\Model;
+namespace App\Domain\Trader\Entity;
 
 use App\Domain\Trader\Dto\ResultDto;
 use DateTimeImmutable;

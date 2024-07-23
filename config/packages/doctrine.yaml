@@ -23,11 +23,11 @@ doctrine:
         type: xml
         is_bundle: false
         dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping/Instrument'
-        prefix: 'App\Domain\Instrument\Model'
+        prefix: 'App\Domain\Instrument\Entity'
         alias: ~
       Trader:
         type: xml
         is_bundle: false
         dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping/Trader'
-        prefix: 'App\Domain\Trader\Model'
+        prefix: 'App\Domain\Trader\Entity'
         alias: ~

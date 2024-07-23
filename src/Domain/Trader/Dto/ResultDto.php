@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Domain\Trader\Dto;
 
 use App\Domain\Trader\Enum\MarketType;
-use App\Domain\Trader\Model\Broker;
-use App\Domain\Trader\Model\Trader;
+use App\Domain\Trader\Entity\Broker;
+use App\Domain\Trader\Entity\Trader;
 use DateTimeImmutable;
 
 final class ResultDto

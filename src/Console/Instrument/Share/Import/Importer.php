@@ -7,7 +7,7 @@ namespace App\Console\Instrument\Share\Import;
 use App\Common\Importer\ImporterInterface;
 use App\Common\Importer\ImportOptionsInterface;
 use App\Domain\Instrument\Factory\ShareFactory;
-use App\Domain\Instrument\Model\Share;
+use App\Domain\Instrument\Entity\Share;
 use App\Domain\Instrument\Service\ShareSaver;
 use DateTimeImmutable;
 use Exception;

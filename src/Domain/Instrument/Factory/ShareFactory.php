@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Instrument\Factory;
 
 use App\Domain\Common\Service\IdService;
-use App\Domain\Instrument\Model\Share;
+use App\Domain\Instrument\Entity\Share;
 use DateTimeImmutable;
 
 final class ShareFactory

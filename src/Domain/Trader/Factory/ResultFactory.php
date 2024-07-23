@@ -6,7 +6,7 @@ namespace App\Domain\Trader\Factory;
 
 use App\Domain\Common\Service\IdService;
 use App\Domain\Trader\Dto\ResultDto;
-use App\Domain\Trader\Model\Result;
+use App\Domain\Trader\Entity\Result;
 
 final class ResultFactory
 {

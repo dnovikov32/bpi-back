@@ -6,7 +6,7 @@ namespace App\Tests\Functional\Infrastracture\Repository;
 
 use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Trader\Factory\BrokerFactory;
-use App\Domain\Trader\Model\Broker;
+use App\Domain\Trader\Entity\Broker;
 use App\Domain\Trader\Repository\BrokerRepositoryInterface;
 use App\Tests\Resource\Fixture\BrokerFixture;
 use App\Tests\Tool\DatabaseToolTrait;

@@ -6,7 +6,7 @@ namespace App\Domain\Trader\Service;
 
 use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Trader\Factory\ResultFactory;
-use App\Domain\Trader\Model\Result;
+use App\Domain\Trader\Entity\Result;
 use App\Domain\Trader\Repository\ResultRepositoryInterface;
 use App\Domain\Trader\Dto\ResultDto;
 

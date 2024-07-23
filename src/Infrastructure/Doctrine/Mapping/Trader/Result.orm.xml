@@ -3,7 +3,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Domain\Trader\Model\Result" table="trader_result" repository-class="App\Infrastructure\Doctrine\Repository\ResultRepository">
+    <entity name="App\Domain\Trader\Entity\Result" table="trader_result" repository-class="App\Infrastructure\Doctrine\Repository\ResultRepository">
         <id name="id" column="id" type="string" length="26">
             <generator strategy="NONE" />
         </id>
@@ -21,14 +21,14 @@
             <unique-constraint columns="trader_id,market_type" name="trader_result_trader_id_market_type_idx" />
         </unique-constraints>
 
-        <many-to-one field="trader" target-entity="App\Domain\Trader\Model\Trader">
+        <many-to-one field="trader" target-entity="App\Domain\Trader\Entity\Trader">
             <join-column name="trader_id" referenced-column-name="id" />
             <cascade>
                 <cascade-persist />
             </cascade>
         </many-to-one>
 
-        <many-to-one field="broker" target-entity="App\Domain\Trader\Model\Broker">
+        <many-to-one field="broker" target-entity="App\Domain\Trader\Entity\Broker">
             <join-column name="broker_id" referenced-column-name="id" />
             <cascade>
                 <cascade-persist />

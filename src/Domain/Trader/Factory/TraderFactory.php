@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Trader\Factory;
 
 use App\Domain\Common\Service\IdService;
-use App\Domain\Trader\Model\Trader;
+use App\Domain\Trader\Entity\Trader;
 
 final class TraderFactory
 {

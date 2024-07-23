@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Instrument\Service;
 
 use App\Domain\Common\Exception\EntityNotFoundException;
-use App\Domain\Instrument\Model\Share;
+use App\Domain\Instrument\Entity\Share;
 use App\Domain\Instrument\Repository\ShareRepositoryInterface;
 
 final class ShareSaver

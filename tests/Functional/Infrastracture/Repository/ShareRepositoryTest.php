@@ -6,7 +6,7 @@ namespace App\Tests\Functional\Infrastracture\Repository;
 
 use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Instrument\Factory\ShareFactory;
-use App\Domain\Instrument\Model\Share;
+use App\Domain\Instrument\Entity\Share;
 use App\Domain\Instrument\Repository\ShareRepositoryInterface;
 use App\Tests\Resource\Fixture\ShareFixture;
 use App\Tests\Tool\DatabaseToolTrait;
