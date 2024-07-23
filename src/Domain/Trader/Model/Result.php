@@ -7,7 +7,7 @@ namespace App\Domain\Trader\Model;
 use App\Domain\Trader\Dto\ResultDto;
 use DateTimeImmutable;
 
-final class Result
+class Result
 {
     public function __construct(
         private string $id,

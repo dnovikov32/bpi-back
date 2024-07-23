@@ -7,16 +7,19 @@ namespace App\Tests\Functional\Infrastracture\Repository;
 use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Trader\Factory\BrokerFactory;
 use App\Domain\Trader\Repository\BrokerRepositoryInterface;
+use App\Tests\Resource\Fixture\BrokerFixture;
+use App\Tests\Tool\DatabaseToolTrait;
+use App\Tests\Tool\FakerTrait;
 use Exception;
-use Faker\Factory;
-use Faker\Generator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class BrokerRepositoryTest extends WebTestCase
 {
+    use DatabaseToolTrait;
+    use FakerTrait;
+
     private BrokerFactory $brokerFactory;
     private BrokerRepositoryInterface $brokerRepository;
-    private Generator $faker;
 
     public function setUp(): void
     {
@@ -28,20 +31,33 @@ class BrokerRepositoryTest extends WebTestCase
 
         $this->brokerRepository  = $this->getContainer()->get('app.domain.trader.repository.broker_repository_interface');
 
-        $this->faker = Factory::create();
     }
 
     /**
      * @throws EntityNotFoundException
      * @throws Exception
      */
-    public function testShareCreatedSuccessfully(): void
+    public function testBrokerCreatedSuccessfully(): void
     {
         $broker = $this->brokerFactory->create(
-            name: $this->faker->company(),
+            name: $this->getFaker()->company(),
         );
 
         $this->brokerRepository->save($broker);
+        $existedBroker = $this->brokerRepository->findByName($broker->getName());
+
+        $this->assertEquals($broker->getId(), $existedBroker->getId());
+    }
+
+    /**
+     * @throws EntityNotFoundException
+     * @throws Exception
+     */
+    public function testBrokerFoundByNameSuccessfully(): void
+    {
+        $executor = $this->getDatabaseTool()->loadFixtures([BrokerFixture::class]);
+        $broker = $executor->getReferenceRepository()->getReference(BrokerFixture::REFERENCE);
+
         $existedBroker = $this->brokerRepository->findByName($broker->getName());
 
         $this->assertEquals($broker->getId(), $existedBroker->getId());

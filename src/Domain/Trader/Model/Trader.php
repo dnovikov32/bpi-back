@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Trader\Model;
 
-final class Trader
+class Trader
 {
     public function __construct(
         private string $id,
