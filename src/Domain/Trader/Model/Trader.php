@@ -34,11 +34,11 @@ final class Trader
         return $this->name;
     }
 
-    public function update(Trader $trader): Trader
+    public function update(int $year, int $moexId, string $name): Trader
     {
-        $this->year = $trader->getYear();
-        $this->moexId = $trader->getMoexId();
-        $this->name = $trader->getName();
+        $this->year = $year;
+        $this->moexId = $moexId;
+        $this->name = $name;
 
         return $this;
     }

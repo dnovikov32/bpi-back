@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Console\Trader\Trader\Import\Fetcher;
 
+use App\Console\Trader\Trader\Import\Dto\ImportTraderDto;
 use App\Infrastructure\Fetcher\Exception\TransformFailedException;
 use App\Infrastructure\Fetcher\Response\ResponseTransformerInterface;
 use Dnovikov32\HttpProcessBundle\Request\ApiRequestInterface;
@@ -34,7 +35,7 @@ class ResponseTransformer implements ResponseTransformerInterface
                     continue;
                 }
 
-                $traders[] = new Trader(
+                $traders[] = new ImportTraderDto(
                     year: $request->year,
                     id: (int) $columns[1],
                     name: mb_convert_encoding($columns[0], self::TO_ENCODING, self::FROM_ENCODING),

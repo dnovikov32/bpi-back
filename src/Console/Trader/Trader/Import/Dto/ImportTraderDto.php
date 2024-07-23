@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Trader\Trader\Import\Fetcher;
+namespace App\Console\Trader\Trader\Import\Dto;
 
-final class Trader
+final class ImportTraderDto
 {
     public function __construct(
         public readonly int $year,
