@@ -51,6 +51,10 @@ Import all traders by 2022 year
 bin/console app:trader:trader:import 2022
 ```
 
+Import results by year
+```bash
+app:trader:result:import 2022
+```
 
 ## Info
 [Статистика конкурса ЛЧИ](https://investor.moex.com/ru/statistics/2022/)  

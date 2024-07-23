@@ -1,0 +1,16 @@
+services:
+  app.console.trader.result.import.importer:
+    class: App\Console\Trader\Result\Import\Importer
+    arguments:
+      - '@app.console.trader.result.import.fetcher'
+      - '@app.console.trader.result.import.builder.aggregate_result_builder'
+      - '@app.domain.trader.repository.result_repository_interface'
+    calls:
+      - setLogger: ['@logger']
+
+  app.console.trader.result.import.builder.aggregate_result_builder:
+    class: App\Console\Trader\Result\Import\Builder\AggregateResultBuilder
+    arguments:
+      - '@app.domain.trader.service.trader_builder'
+      - '@app.domain.trader.service.broker_builder'
+      - '@app.domain.trader.service.result_builder'

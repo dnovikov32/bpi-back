@@ -1,0 +1,23 @@
+services:
+  app.console.trader.result.import.fetcher:
+    class: App\Infrastructure\Fetcher\BaseFetcher
+    arguments:
+      - '@app.console.trader.result.import.fetcher.http_client'
+      - '@app.console.trader.result.import.fetcher.response_transformer'
+    calls:
+      - setLogger: ['@logger']
+
+  app.console.trader.result.import.fetcher.http_client:
+    class: App\Infrastructure\Fetcher\HttpClient\HttpClient
+    arguments:
+      - '@app.infrastructure.http_client'
+      - '@app.console.trader.result.import.fetcher.request_builder'
+
+  app.console.trader.result.import.fetcher.request_builder:
+    class: App\Console\Trader\Result\Import\Fetcher\RequestBuilder
+    arguments:
+      - 'GET'
+      - '%app.moex.base_url%/:year/result_day.csv'
+
+  app.console.trader.result.import.fetcher.response_transformer:
+    class: App\Console\Trader\Result\Import\Fetcher\ResponseTransformer

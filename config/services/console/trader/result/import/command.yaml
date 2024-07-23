@@ -1,0 +1,9 @@
+services:
+  app.console.trader.result.import.command:
+    class: App\Console\Trader\Result\Import\Command
+    arguments:
+      - '@app.console.trader.result.import.importer'
+    calls:
+      - setLogger: ['@logger']
+    tags:
+      - { name: console.command, command: 'app:trader:result:import', description: 'Import bpi results by year' }
