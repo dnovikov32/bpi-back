@@ -23,11 +23,11 @@ final class Version20240723103254 extends AbstractMigration
             market_type SMALLINT NOT NULL,
             relevant_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
             start_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
-            initial_capital NUMERIC(14, 2) NOT NULL,
-            profit NUMERIC(14, 2) NOT NULL,
-            profit_percentage NUMERIC(9, 3) NOT NULL,
+            initial_capital DOUBLE PRECISION NOT NULL,
+            profit DOUBLE PRECISION NOT NULL,
+            profit_percentage DOUBLE PRECISION NOT NULL,
             deal_count INT NOT NULL,
-            volume NUMERIC(14, 2) NOT NULL,
+            volume DOUBLE PRECISION NOT NULL,
             active BOOLEAN NOT NULL,
             PRIMARY KEY(id)
        )');

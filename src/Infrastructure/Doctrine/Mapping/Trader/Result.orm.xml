@@ -10,11 +10,11 @@
         <field name="marketType" column="market_type" type="smallint" />
         <field name="relevantDate" column="relevant_date" type="datetime_immutable" />
         <field name="startDate" column="start_date" type="datetime_immutable" />
-        <field name="initialCapital" column="initial_capital" type="decimal" precision="14" scale="2"  />
-        <field name="profit" column="profit" type="decimal" precision="14" scale="2" />
-        <field name="profitPercentage" column="profit_percentage" type="decimal" precision="9" scale="3" />
+        <field name="initialCapital" column="initial_capital" type="float" />
+        <field name="profit" column="profit" type="float" />
+        <field name="profitPercentage" column="profit_percentage" type="float" />
         <field name="dealCount" column="deal_count" type="integer" />
-        <field name="volume" column="volume" type="decimal" precision="14" scale="2" />
+        <field name="volume" column="volume" type="float" />
         <field name="active" column="active" type="boolean" />
 
         <unique-constraints>
