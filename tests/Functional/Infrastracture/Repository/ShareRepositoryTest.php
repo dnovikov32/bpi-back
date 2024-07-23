@@ -29,11 +29,13 @@ class ShareRepositoryTest extends WebTestCase
 
         $container = static::getContainer();
 
+        /** @var ShareRepositoryInterface $shareRepository */
+        $shareRepository = $container->get('app.domain.instrument.repository.share_repository_interface');
+        $this->shareRepository = $shareRepository;
+
         /** @var ShareFactory $shareFactory */
         $shareFactory = $container->get('app.domain.instrument.factory.share_factory');
         $this->shareFactory = $shareFactory;
-
-        $this->shareRepository = $container->get('app.domain.instrument.repository.share_repository_interface');
     }
 
     /**

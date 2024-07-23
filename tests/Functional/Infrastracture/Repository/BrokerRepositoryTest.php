@@ -26,11 +26,15 @@ class BrokerRepositoryTest extends WebTestCase
     {
         parent::setUp();
 
-        /** @var BrokerFactory $brokerFactory */
-        $brokerFactory = $this->getContainer()->get('app.domain.trader.factory.broker_factory');
-        $this->brokerFactory = $brokerFactory;
+        $container = static::getContainer();
 
-        $this->brokerRepository  = $this->getContainer()->get('app.domain.trader.repository.broker_repository_interface');
+        /** @var BrokerRepositoryInterface $brokerRepository */
+        $brokerRepository = $container->get('app.domain.trader.repository.broker_repository_interface');
+        $this->brokerRepository = $brokerRepository;
+
+        /** @var BrokerFactory $brokerFactory */
+        $brokerFactory = $container->get('app.domain.trader.factory.broker_factory');
+        $this->brokerFactory = $brokerFactory;
     }
 
     /**

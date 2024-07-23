@@ -28,11 +28,13 @@ class TraderRepositoryTest extends WebTestCase
 
         $container = static::getContainer();
 
+        /** @var TraderRepositoryInterface $traderRepository */
+        $traderRepository = $container->get('app.domain.trader.repository.trader_repository_interface');
+        $this->traderRepository = $traderRepository;
+
         /** @var TraderFactory $traderFactory */
         $traderFactory = $container->get('app.domain.trader.factory.trader_factory');
         $this->traderFactory = $traderFactory;
-
-        $this->traderRepository  = $container->get('app.domain.trader.repository.trader_repository_interface');
     }
 
     /**
