@@ -5,29 +5,26 @@ declare(strict_types=1);
 namespace App\Domain\Trader\Service;
 
 use App\Domain\Common\Exception\EntityNotFoundException;
+use App\Domain\Trader\Factory\BrokerFactory;
 use App\Domain\Trader\Model\Broker;
 use App\Domain\Trader\Repository\BrokerRepositoryInterface;
 
-final class BrokerSaver
+final class BrokerBuilder
 {
     public function __construct(
         private readonly BrokerRepositoryInterface $brokerRepository,
+        private readonly BrokerFactory $brokerFactory,
     ) {
     }
 
-    public function create(Broker $broker): Broker
-    {
-        $this->brokerRepository->save($broker);
-
-        return $broker;
-    }
-
-    public function findOrCreate(Broker $broker): Broker
+    public function findOrCreate(string $name): Broker
     {
         try {
-            return $this->brokerRepository->findByName($broker->getName());
+            $broker = $this->brokerRepository->findByName($name);
         } catch (EntityNotFoundException) {
-            return $this->create($broker);
+            $broker = $this->brokerFactory->create($name);
         }
+
+        return $broker;
     }
 }

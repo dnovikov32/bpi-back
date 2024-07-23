@@ -18,19 +18,13 @@ class ResultRepository extends ServiceEntityRepository implements ResultReposito
         $this->getEntityManager()->flush();
     }
 
-    public function findByYearAndTraderIdAndMarketType(
-        int $year,
-        int $traderId,
-        int $marketType
-    ): Result
+    public function findByTraderIdAndMarketType(string $traderId, int $marketType): Result
     {
         try {
             return $this->createQueryBuilder('r')
-                ->andWhere('r.year = :year')
-                ->andWhere('r.traderId = :traderId')
+                ->andWhere('r.trader = :traderId') // IDENTITY
                 ->andWhere('r.marketType = :marketType')
                 ->setParameters([
-                    ':year' => $year,
                     ':traderId' => $traderId,
                     ':marketType' => $marketType,
                 ])

@@ -1,0 +1,11 @@
+services:
+  app.domain.trader.factory.result_factory:
+    class: App\Domain\Trader\Factory\ResultFactory
+    arguments:
+      - '@app.domain.common.service.id_service'
+
+  app.domain.trader.service.result_builder:
+    class: App\Domain\Trader\Service\ResultBuilder
+    arguments:
+      - '@app.domain.trader.repository.result_repository_interface'
+      - '@app.domain.trader.factory.result_factory'

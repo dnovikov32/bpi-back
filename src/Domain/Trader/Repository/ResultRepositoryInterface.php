@@ -14,5 +14,5 @@ interface ResultRepositoryInterface
     /**
      * @throws EntityNotFoundException
      */
-    public function findByYearAndTraderIdAndMarketType(int $year, int $traderId, int $marketType): Result;
+    public function findByTraderIdAndMarketType(string $traderId, int $marketType): Result;
 }

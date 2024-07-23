@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Domain\Trader\Model;
 
+use App\Domain\Trader\Dto\ResultDto;
 use DateTimeImmutable;
 
 final class Result
 {
     public function __construct(
         private string $id,
-        private int $year,
-        private int $traderId,
-        private int $marketType,
+        private Trader $trader,
+        private Broker $broker,
         private DateTimeImmutable $relevantDate,
         private DateTimeImmutable $startDate,
-        private string $brokerId,
+        private int $marketType,
         private float $initialCapital,
         private float $profit,
         private float $profitPercentage,
@@ -30,19 +30,14 @@ final class Result
         return $this->id;
     }
 
-    public function getYear(): int
+    public function getTrader(): Trader
     {
-        return $this->year;
+        return $this->trader;
     }
 
-    public function getTraderId(): int
+    public function getBroker(): Broker
     {
-        return $this->traderId;
-    }
-
-    public function getMarketType(): int
-    {
-        return $this->marketType;
+        return $this->broker;
     }
 
     public function getRelevantDate(): DateTimeImmutable
@@ -55,9 +50,9 @@ final class Result
         return $this->startDate;
     }
 
-    public function getBrokerId(): string
+    public function getMarketType(): int
     {
-        return $this->brokerId;
+        return $this->marketType;
     }
 
     public function getInitialCapital(): float
@@ -90,20 +85,19 @@ final class Result
         return $this->active;
     }
 
-    public function update(Result $result): Result
+    public function update(ResultDto $resultDto): Result
     {
-        $this->year = $result->getYear();
-        $this->traderId = $result->getTraderId();
-        $this->marketType = $result->getMarketType();
-        $this->relevantDate = $result->getRelevantDate();
-        $this->startDate = $result->getStartDate();
-        $this->brokerId = $result->getBrokerId();
-        $this->initialCapital = $result->getInitialCapital();
-        $this->profit = $result->getProfit();
-        $this->profitPercentage = $result->getProfitPercentage();
-        $this->dealCount = $result->getDealCount();
-        $this->volume = $result->getVolume();
-        $this->active = $result->getActive();
+        $this->trader = $resultDto->trader;
+        $this->broker = $resultDto->broker;
+        $this->relevantDate = $resultDto->relevantDate;
+        $this->startDate = $resultDto->startDate;
+        $this->marketType = $resultDto->marketType->value();
+        $this->initialCapital = $resultDto->initialCapital;
+        $this->profit = $resultDto->profit;
+        $this->profitPercentage = $resultDto->profitPercentage;
+        $this->dealCount = $resultDto->dealCount;
+        $this->volume = $resultDto->volume;
+        $this->active = $resultDto->active;
 
         return $this;
     }
