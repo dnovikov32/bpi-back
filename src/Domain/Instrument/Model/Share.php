@@ -6,7 +6,7 @@ namespace App\Domain\Instrument\Model;
 
 use DateTimeImmutable;
 
-final class Share
+class Share
 {
     public function __construct(
         private string $id,

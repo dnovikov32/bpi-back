@@ -43,7 +43,7 @@ http://localhost:8081/
 
 Import all shares fromTinkoff API
 ```bash
-bin/console app:instrument:share:import`  
+bin/console app:instrument:share:import
 ```
 
 Import all traders by 2022 year
@@ -53,7 +53,7 @@ bin/console app:trader:trader:import 2022
 
 Import results by year
 ```bash
-app:trader:result:import 2022
+bin/console app:trader:result:import 2022
 ```
 
 ## Info

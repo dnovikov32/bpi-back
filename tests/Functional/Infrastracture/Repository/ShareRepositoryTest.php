@@ -6,7 +6,10 @@ namespace App\Tests\Functional\Infrastracture\Repository;
 
 use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Instrument\Factory\ShareFactory;
+use App\Domain\Instrument\Model\Share;
 use App\Domain\Instrument\Repository\ShareRepositoryInterface;
+use App\Tests\Resource\Fixture\ShareFixture;
+use App\Tests\Tool\DatabaseToolTrait;
 use App\Tests\Tool\FakerTrait;
 use DateTimeImmutable;
 use Exception;
@@ -14,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ShareRepositoryTest extends WebTestCase
 {
+    use DatabaseToolTrait;
     use FakerTrait;
 
     private ShareFactory $shareFactory;
@@ -51,6 +55,21 @@ class ShareRepositoryTest extends WebTestCase
         );
 
         $this->shareRepository->save($share);
+        $existedShare = $this->shareRepository->findByTicker($share->getTicker());
+
+        $this->assertEquals($share->getId(), $existedShare->getId());
+    }
+
+    /**
+     * @throws EntityNotFoundException
+     * @throws Exception
+     */
+    public function testShareFoundByTickerSuccessfully(): void
+    {
+        $executor = $this->getDatabaseTool()->loadFixtures([ShareFixture::class]);
+
+        /** @var Share $share */
+        $share = $executor->getReferenceRepository()->getReference(ShareFixture::REFERENCE);
         $existedShare = $this->shareRepository->findByTicker($share->getTicker());
 
         $this->assertEquals($share->getId(), $existedShare->getId());

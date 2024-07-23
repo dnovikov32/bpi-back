@@ -6,6 +6,7 @@ namespace App\Tests\Functional\Infrastracture\Repository;
 
 use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Trader\Factory\BrokerFactory;
+use App\Domain\Trader\Model\Broker;
 use App\Domain\Trader\Repository\BrokerRepositoryInterface;
 use App\Tests\Resource\Fixture\BrokerFixture;
 use App\Tests\Tool\DatabaseToolTrait;
@@ -30,7 +31,6 @@ class BrokerRepositoryTest extends WebTestCase
         $this->brokerFactory = $brokerFactory;
 
         $this->brokerRepository  = $this->getContainer()->get('app.domain.trader.repository.broker_repository_interface');
-
     }
 
     /**
@@ -56,8 +56,9 @@ class BrokerRepositoryTest extends WebTestCase
     public function testBrokerFoundByNameSuccessfully(): void
     {
         $executor = $this->getDatabaseTool()->loadFixtures([BrokerFixture::class]);
-        $broker = $executor->getReferenceRepository()->getReference(BrokerFixture::REFERENCE);
 
+        /** @var Broker $broker */
+        $broker = $executor->getReferenceRepository()->getReference(BrokerFixture::REFERENCE);
         $existedBroker = $this->brokerRepository->findByName($broker->getName());
 
         $this->assertEquals($broker->getId(), $existedBroker->getId());
