@@ -11,7 +11,7 @@ final class Options implements ImportOptionsInterface
 {
     public function __construct(
         public readonly int $year,
-        public readonly ?ProgressBar $progressBar,
+        public readonly ?ProgressBar $progressBar = null,
     ) {
     }
 }

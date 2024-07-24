@@ -41,7 +41,7 @@ final class Command extends SymfonyCommand implements LoggerAwareInterface
         $io->title('Traders import from API started');
 
         try {
-            $progressBar = new ProgressBar($output, 10);
+            $progressBar = new ProgressBar($output);
             $progressBar->start();
 
             $this->apiImporter->import($this->getImportOptions($input, $progressBar));

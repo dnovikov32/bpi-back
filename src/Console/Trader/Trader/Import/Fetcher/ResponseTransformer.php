@@ -29,9 +29,9 @@ class ResponseTransformer implements ResponseTransformerInterface
             $traders = [];
 
             foreach ($rows as $row) {
-                $columns = str_getcsv($row, self::SEPARATOR);
+                $columns = array_filter(str_getcsv($row, self::SEPARATOR));
 
-                if (array_filter($columns) === []) {
+                if ($columns === []) {
                     continue;
                 }
 
