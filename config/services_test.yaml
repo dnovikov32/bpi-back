@@ -3,3 +3,17 @@ services:
     resource: '%kernel.project_dir%/tests/Resource/Fixture/*'
     tags:
       - { name: 'doctrine.fixture.orm' }
+
+  app.infrastructure.http_client:
+    class: GuzzleHttp\Client
+    arguments:
+      - { handler: '@app.infrastructure.http_client.guzzle.handler_stack' }
+
+  app.infrastructure.http_client.guzzle.handler_stack:
+    class: GuzzleHttp\HandlerStack
+    factory: [null, 'create']
+    arguments:
+      $handler: '@app.infrastructure.http_client.guzzle.mock_handler'
+
+  app.infrastructure.http_client.guzzle.mock_handler:
+    class: GuzzleHttp\Handler\MockHandler
