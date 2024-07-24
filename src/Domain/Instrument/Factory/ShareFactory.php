@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Domain\Instrument\Factory;
 
 use App\Domain\Common\Service\IdService;
+use App\Domain\Instrument\Dto\ShareDto;
 use App\Domain\Instrument\Entity\Share;
-use DateTimeImmutable;
 
 final class ShareFactory
 {
@@ -15,29 +15,19 @@ final class ShareFactory
     ) {
     }
 
-    public function create(
-        string $figi,
-        string $ticker,
-        string $isin,
-        int $lot,
-        string $currency,
-        string $name,
-        string $uid,
-        ?DateTimeImmutable $first1minCandleDate,
-        ?DateTimeImmutable $first1dayCandleDate,
-    ): Share
+    public function create(ShareDto $dto): Share
     {
         return new Share(
             id: $this->idService->generate(),
-            figi: $figi,
-            ticker: $ticker,
-            isin: $isin,
-            lot: $lot,
-            currency: $currency,
-            name: $name,
-            uid: $uid,
-            first1minCandleDate: $first1minCandleDate,
-            first1dayCandleDate: $first1dayCandleDate,
+            figi: $dto->figi,
+            ticker: $dto->ticker,
+            isin: $dto->isin,
+            lot: $dto->lot,
+            currency: $dto->currency,
+            name: $dto->name,
+            uid: $dto->uid,
+            first1minCandleDate: $dto->first1minCandleDate,
+            first1dayCandleDate: $dto->first1dayCandleDate,
         );
     }
 }

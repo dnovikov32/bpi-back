@@ -6,9 +6,9 @@ namespace App\Console\Instrument\Share\Import;
 
 use App\Common\Importer\ImporterInterface;
 use App\Common\Importer\ImportOptionsInterface;
-use App\Domain\Instrument\Factory\ShareFactory;
-use App\Domain\Instrument\Entity\Share;
-use App\Domain\Instrument\Service\ShareSaver;
+use App\Domain\Instrument\Builder\ShareBuilder;
+use App\Domain\Instrument\Dto\ShareDto;
+use App\Domain\Instrument\Repository\ShareRepositoryInterface;
 use DateTimeImmutable;
 use Exception;
 use Metaseller\TinkoffInvestApi2\TinkoffClientsFactory;
@@ -25,8 +25,8 @@ final class Importer implements ImporterInterface, LoggerAwareInterface
 
     public function __construct(
         private readonly TinkoffClientsFactory $tinkoffClientsFactory,
-        private readonly ShareFactory $shareFactory,
-        private readonly ShareSaver $shareSaver,
+        private readonly ShareBuilder $shareBuilder,
+        private readonly ShareRepositoryInterface $shareRepository,
     ) {
     }
 
@@ -44,7 +44,9 @@ final class Importer implements ImporterInterface, LoggerAwareInterface
         $progressBar?->setMaxSteps(count($instruments));
 
         foreach ($instruments as $instrument) {
-            $this->shareSaver->updateOrCreate($this->createShare($instrument));
+            $share = $this->shareBuilder->updateOrCreate($this->createShareDto($instrument));
+            $this->shareRepository->save($share);
+
             $progressBar?->advance();
         }
     }
@@ -66,9 +68,9 @@ final class Importer implements ImporterInterface, LoggerAwareInterface
         return $response->getInstruments();
     }
 
-    private function createShare(TinkoffShare $instrument): Share
+    private function createShareDto(TinkoffShare $instrument): ShareDto
     {
-        return $this->shareFactory->create(
+        return new ShareDto(
             figi: $instrument->getFigi(),
             ticker: $instrument->getTicker(),
             isin: $instrument->getIsin(),

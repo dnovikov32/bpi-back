@@ -4,7 +4,8 @@ services:
     arguments:
       - '@app.domain.common.service.id_service'
 
-  app.domain.instrument.service.share_saver:
-    class: App\Domain\Instrument\Service\ShareSaver
+  app.domain.instrument.builder.share_builder:
+    class: App\Domain\Instrument\Builder\ShareBuilder
     arguments:
       - '@app.domain.instrument.repository.share_repository_interface'
+      - '@app.domain.instrument.factory.share_factory'

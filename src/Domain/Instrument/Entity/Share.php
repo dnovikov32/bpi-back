@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Instrument\Entity;
 
+use App\Domain\Instrument\Dto\ShareDto;
 use DateTimeImmutable;
 
 class Share
@@ -72,18 +73,17 @@ class Share
         return $this->first1dayCandleDate;
     }
 
-    public function update(Share $share): Share
+    public function update(ShareDto $dto): Share
     {
-        $this->figi = $share->getFigi();
-        $this->ticker = $share->getTicker();
-        $this->isin = $share->getIsin();
-        $this->lot = $share->getLot();
-        $this->currency = $share->getCurrency();
-        $this->name = $share->getName();
-        $this->uid = $share->getUid();
-        $this->name = $share->getName();
-        $this->first1minCandleDate = $share->getFirst1minCandleDate();
-        $this->first1dayCandleDate = $share->getFirst1dayCandleDate();
+        $this->figi = $dto->figi;
+        $this->ticker = $dto->ticker;
+        $this->isin = $dto->isin;
+        $this->lot = $dto->lot;
+        $this->currency = $dto->currency;
+        $this->name = $dto->name;
+        $this->uid = $dto->uid;
+        $this->first1minCandleDate = $dto->first1minCandleDate;
+        $this->first1dayCandleDate = $dto->first1dayCandleDate;
 
         return $this;
     }

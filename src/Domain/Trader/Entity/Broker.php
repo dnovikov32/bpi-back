@@ -21,11 +21,4 @@ class Broker
     {
         return $this->name;
     }
-
-    public function update(self $broker): self
-    {
-        $this->name = $broker->getName();
-
-        return $this;
-    }
 }
