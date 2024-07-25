@@ -25,6 +25,12 @@ doctrine:
         dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping/Instrument'
         prefix: 'App\Domain\Instrument\Entity'
         alias: ~
+      Marketdata:
+        type: xml
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/Mapping/Marketdata'
+        prefix: 'App\Domain\Marketdata\Entity'
+        alias: ~
       Trader:
         type: xml
         is_bundle: false

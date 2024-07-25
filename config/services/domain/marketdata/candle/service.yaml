@@ -1,0 +1,5 @@
+services:
+  app.domain.marketdata.factory.candle_factory:
+    class: App\Domain\Marketdata\Factory\CandleFactory
+    arguments:
+      - '@app.domain.common.service.id_service'

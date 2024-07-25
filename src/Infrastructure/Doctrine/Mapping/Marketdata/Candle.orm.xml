@@ -1,0 +1,27 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Domain\Marketdata\Entity\Candle" table="marketdata_candle" repository-class="App\Infrastructure\Doctrine\Repository\CandleRepository">
+        <id name="id" column="id" type="string" length="26">
+            <generator strategy="NONE" />
+        </id>
+        <field name="startDate" column="start_date" type="datetime_immutable" />
+        <field name="openPrice" column="open_price" type="float" />
+        <field name="closePrice" column="close_price" type="float" />
+        <field name="maxPrice" column="max_price" type="float" />
+        <field name="minPrice" column="min_price" type="float" />
+        <field name="volume" column="volume" type="integer" />
+
+        <many-to-one field="share" target-entity="App\Domain\Instrument\Entity\Share">
+            <join-column name="share_id" referenced-column-name="id" nullable="false" />
+        </many-to-one>
+
+        <indexes>
+            <index columns="start_date" name="marketdata_candle_start_date_idx" />
+            <index columns="share_id" name="marketdata_candle_share_id_idx" />
+        </indexes>
+    </entity>
+
+</doctrine-mapping>

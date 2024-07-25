@@ -12,3 +12,7 @@ services:
 
   app.domain.trader.repository.result_repository_interface:
     alias: app.infrastructure.doctrine.repository.result_repository
+
+  # Marketdata
+  app.domain.marketdata.repository.candle_repository_interface:
+    alias: app.infrastructure.doctrine.repository.candle_repository

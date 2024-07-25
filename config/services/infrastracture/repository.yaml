@@ -28,3 +28,11 @@ services:
       - '@doctrine'
       - 'App\Domain\Trader\Entity\Result'
     tags: [ 'doctrine.repository_service' ]
+
+  # Marketdata
+  app.infrastructure.doctrine.repository.candle_repository:
+    class: App\Infrastructure\Doctrine\Repository\CandleRepository
+    arguments:
+      - '@doctrine'
+      - 'App\Domain\Marketdata\Entity\Candle'
+    tags: [ 'doctrine.repository_service' ]
