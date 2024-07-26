@@ -9,4 +9,6 @@ use App\Domain\Marketdata\Entity\Candle;
 interface CandleRepositoryInterface
 {
     public function save(Candle $candle): void;
+
+    public function deleteAllByShareIdAndYear(string $shareId, int $year): void;
 }

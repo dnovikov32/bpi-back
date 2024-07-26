@@ -15,4 +15,14 @@ interface ShareRepositoryInterface
      * @throws EntityNotFoundException
      */
     public function findByTicker(string $ticker): Share;
+
+    /**
+     * @throws EntityNotFoundException
+     */
+    public function findByUid(string $uid): Share;
+
+    /**
+     * @throws EntityNotFoundException
+     */
+    public function findByFigi(string $figi): Share;
 }

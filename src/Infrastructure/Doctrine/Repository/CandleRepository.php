@@ -15,4 +15,19 @@ class CandleRepository extends ServiceEntityRepository implements CandleReposito
         $this->getEntityManager()->persist($candle);
         $this->getEntityManager()->flush();
     }
+
+    // TODO: add test
+    public function deleteAllByShareIdAndYear(string $shareId, int $year): void
+    {
+        $this->createQueryBuilder('c')
+            ->delete()
+            ->andWhere('c.share = :shareId')
+            ->andWhere("DATE_PART('year', c.startDate) = :year")
+            ->setParameters([
+                ':shareId' => $shareId,
+                ':year' => $year,
+            ])
+            ->getQuery()
+            ->execute();
+    }
 }

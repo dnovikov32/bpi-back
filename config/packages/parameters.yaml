@@ -1,7 +1,11 @@
 parameters:
   app.db.dsn: 'postgresql://%env(POSTGRES_USER)%:%env(POSTGRES_PASSWORD)%@%env(POSTGRES_HOST)%:%env(POSTGRES_PORT)%/%env(POSTGRES_DB)%'
   app.site.base_url: 'http://%env(SITE_HOST)%'
+
+  app.tinkoff.api.base_url: 'https://%env(TINKOFF_API_HOST)%'
   app.tinkoff.api.token: '%env(TINKOFF_API_TOKEN)%'
 
   app.moex.base_url: 'http://%env(MOEX_HOST)%'
   app.moex.trader.file_name: 'trader.csv'
+
+  app.doctrine.batch_size.default: 1000

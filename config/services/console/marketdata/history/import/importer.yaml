@@ -1,0 +1,16 @@
+services:
+  app.console.marketdata.history.import.importer:
+    class: App\Console\Marketdata\History\Import\Importer
+    arguments:
+      - '@app.console.marketdata.history.import.fetcher'
+      - '@app.console.marketdata.history.import.builder.candle_builder'
+      - '@app.domain.marketdata.service.candle_deleter'
+      - '@app.infrastructure.doctrine.bulk_persister'
+    calls:
+      - setLogger: ['@logger']
+
+  app.console.marketdata.history.import.builder.candle_builder:
+    class: App\Console\Marketdata\History\Import\Builder\CandleBuilder
+    arguments:
+      - '@app.domain.instrument.repository.share_repository_interface'
+      - '@app.domain.marketdata.factory.candle_factory'

@@ -3,3 +3,9 @@ services:
     class: App\Domain\Marketdata\Factory\CandleFactory
     arguments:
       - '@app.domain.common.service.id_service'
+
+  app.domain.marketdata.service.candle_deleter:
+    class: App\Domain\Marketdata\Service\CandleDeleter
+    arguments:
+      - '@app.domain.instrument.repository.share_repository_interface'
+      - '@app.domain.marketdata.repository.candle_repository_interface'

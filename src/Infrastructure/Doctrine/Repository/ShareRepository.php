@@ -30,4 +30,36 @@ class ShareRepository extends ServiceEntityRepository implements ShareRepository
             throw new EntityNotFoundException($e->getMessage(), $e->getCode(), $e);
         }
     }
+
+    /**
+     * TODO: add test
+     */
+    public function findByUid(string $uid): Share
+    {
+        try {
+            return $this->createQueryBuilder('s')
+                ->where('s.uid = :uid')
+                ->setParameter(':uid', $uid)
+                ->getQuery()
+                ->getSingleResult();
+        } catch (UnexpectedResultException $e) {
+            throw new EntityNotFoundException($e->getMessage(), $e->getCode(), $e);
+        }
+    }
+
+    /**
+     * TODO: add test
+     */
+    public function findByFigi(string $figi): Share
+    {
+        try {
+            return $this->createQueryBuilder('s')
+                ->where('s.figi = :figi')
+                ->setParameter(':figi', $figi)
+                ->getQuery()
+                ->getSingleResult();
+        } catch (UnexpectedResultException $e) {
+            throw new EntityNotFoundException($e->getMessage(), $e->getCode(), $e);
+        }
+    }
 }

@@ -1,0 +1,9 @@
+services:
+  app.console.marketdata.history.import.command:
+    class: App\Console\Marketdata\History\Import\Command
+    arguments:
+      - '@app.console.marketdata.history.import.importer'
+    calls:
+      - setLogger: ['@logger']
+    tags:
+      - { name: console.command, command: 'app:marketdata:history:import', description: 'Import candles history data by year and instrument figi' }

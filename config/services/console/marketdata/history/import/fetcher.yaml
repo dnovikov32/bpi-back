@@ -1,0 +1,26 @@
+services:
+  app.console.marketdata.history.import.fetcher:
+    class: App\Infrastructure\Fetcher\BaseFetcher
+    arguments:
+      - '@app.console.marketdata.history.import.fetcher.http_client'
+      - '@app.console.marketdata.history.import.fetcher.response_transformer'
+    calls:
+      - setLogger: ['@logger']
+
+  app.console.marketdata.history.import.fetcher.http_client:
+    class: App\Infrastructure\Fetcher\HttpClient\HttpClient
+    arguments:
+      - '@app.infrastructure.http_client'
+      - '@app.console.marketdata.history.import.fetcher.request_builder'
+
+  app.console.marketdata.history.import.fetcher.request_builder:
+    class: App\Console\Marketdata\History\Import\Fetcher\RequestBuilder
+    arguments:
+      - 'GET'
+      - '%app.tinkoff.api.base_url%/history-data'
+      - '%app.tinkoff.api.token%'
+
+  app.console.marketdata.history.import.fetcher.response_transformer:
+    class: App\Console\Marketdata\History\Import\Fetcher\ResponseTransformer
+    arguments:
+      - '%kernel.project_dir%/var/candles_history'

@@ -13,3 +13,9 @@ services:
     factory: [null, 'create']
     arguments:
       $api_token: '%app.tinkoff.api.token%'
+
+  app.infrastructure.doctrine.bulk_persister:
+    class: App\Infrastructure\Doctrine\BulkPersister
+    arguments:
+      - '@doctrine.orm.entity_manager'
+      - '%app.doctrine.batch_size.default%'
