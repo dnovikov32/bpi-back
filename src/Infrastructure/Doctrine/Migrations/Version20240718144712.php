@@ -30,6 +30,8 @@ final class Version20240718144712 extends AbstractMigration
             PRIMARY KEY(id))
         ');
 
+        $this->addSql('CREATE INDEX instrument_share_figi_idx ON instrument_share (figi)');
+
         $this->addSql('CREATE UNIQUE INDEX instrument_share_ticker_unq ON instrument_share (ticker)');
         $this->addSql('CREATE UNIQUE INDEX instrument_share_uid_unq ON instrument_share (uid)');
 

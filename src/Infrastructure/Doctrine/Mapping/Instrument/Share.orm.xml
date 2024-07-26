@@ -17,6 +17,10 @@
         <field name="first1minCandleDate" column="first_1min_candle_date" type="datetime_immutable" nullable="true" />
         <field name="first1dayCandleDate" column="first_1day_candle_date" type="datetime_immutable" nullable="true" />
 
+        <indexes>
+            <index columns="figi" name="instrument_share_figi_idx" />
+        </indexes>
+
         <unique-constraints>
             <unique-constraint columns="ticker" name="instrument_share_ticker_unq" />
             <unique-constraint columns="uid" name="instrument_share_uid_unq" />

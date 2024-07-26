@@ -23,6 +23,7 @@ final class Version20240719210047 extends AbstractMigration
             name VARCHAR(32) NOT NULL,
             PRIMARY KEY(id))
         ');
+
         $this->addSql('CREATE UNIQUE INDEX trader_trader_year_moex_id_idx ON trader_trader (year, moex_id)');
     }
 
