@@ -18,6 +18,9 @@ doctrine:
     enable_lazy_ghost_objects: true # TODO: what is it?
     naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
     auto_mapping: true
+    dql:
+      datetime_functions:
+        date_part: DoctrineExtensions\Query\Postgresql\DatePart
     mappings:
       Instrument:
         type: xml
