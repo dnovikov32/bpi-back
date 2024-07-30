@@ -18,4 +18,5 @@ enum Year: string
     case Year2021 = '2021';
     case Year2022 = '2022';
     case Year2023 = '2023';
+    case Year2024 = '2024';
 }

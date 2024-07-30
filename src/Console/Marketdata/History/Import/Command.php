@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Console\Marketdata\History\Import;
 
-use App\Common\Importer\ImporterInterface;
 use App\Common\Importer\ImportOptionsInterface;
+use App\Common\Importer\IterableImporterInterface;
 use Exception;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -21,7 +21,7 @@ final class Command extends SymfonyCommand implements LoggerAwareInterface
     use LoggerAwareTrait;
 
     public function __construct(
-        private readonly ImporterInterface $apiImporter
+        private readonly IterableImporterInterface $apiImporter
     ) {
         parent::__construct();
     }
@@ -51,7 +51,12 @@ final class Command extends SymfonyCommand implements LoggerAwareInterface
             $progressBar->setFormat(ProgressBar::FORMAT_VERY_VERBOSE);
             $progressBar->start();
 
-            $this->apiImporter->import($this->getImportOptions($input, $progressBar));
+            $options = $this->getImportOptions($input);
+
+            foreach ($this->apiImporter->import($options) as $_) {
+                $progressBar->setMaxSteps($this->apiImporter->count());
+                $progressBar->advance();
+            }
 
             $progressBar->finish();
         } catch (Exception $e) {
@@ -70,12 +75,11 @@ final class Command extends SymfonyCommand implements LoggerAwareInterface
         return self::SUCCESS;
     }
 
-    private function getImportOptions(InputInterface $input, ProgressBar $progressBar): ImportOptionsInterface
+    private function getImportOptions(InputInterface $input): ImportOptionsInterface
     {
         return new Options(
             figi: (string) $input->getArgument('figi'),
             year: (int) $input->getArgument('year'),
-            progressBar: $progressBar,
         );
     }
 }
