@@ -7,8 +7,6 @@ namespace App\Console\Marketdata\History\Import\Fetcher;
 use App\Console\Marketdata\History\Import\Dto\ImportCandleDto;
 use App\Infrastructure\Fetcher\Exception\TransformFailedException;
 use App\Infrastructure\Fetcher\Response\ResponseTransformerInterface;
-use DateTimeImmutable;
-use DateTimeInterface;
 use Dnovikov32\HttpProcessBundle\Request\ApiRequestInterface;
 use FilesystemIterator;
 use Psr\Http\Message\ResponseInterface as HttpResponseInterface;
@@ -137,7 +135,7 @@ class ResponseTransformer implements ResponseTransformerInterface
 
             $candles[] = new ImportCandleDto(
                 instrumentUid: $columns[0],
-                startDate: $this->transformStringToDatetime($columns[1]),
+                startDate: $columns[1],
                 openPrice: (float) $columns[2],
                 closePrice: (float) $columns[3],
                 maxPrice: (float) $columns[4],
@@ -147,12 +145,6 @@ class ResponseTransformer implements ResponseTransformerInterface
         }
 
         return $candles;
-    }
-
-
-    private function transformStringToDatetime(string $date): DateTimeImmutable
-    {
-        return DateTimeImmutable::createFromFormat(DateTimeInterface::ATOM, $date);
     }
 
     private function removeTempFiles(array $cvsFiles, string $zipFilePath, string $unzipDir): void

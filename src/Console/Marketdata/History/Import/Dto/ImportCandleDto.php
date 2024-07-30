@@ -10,7 +10,7 @@ final class ImportCandleDto
 {
     public function __construct(
         public readonly string $instrumentUid,
-        public readonly DateTimeImmutable $startDate,
+        public readonly string $startDate,
         public readonly float $openPrice,
         public readonly float $closePrice,
         public readonly float $maxPrice,

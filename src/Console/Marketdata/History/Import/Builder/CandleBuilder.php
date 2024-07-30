@@ -9,6 +9,8 @@ use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Instrument\Repository\ShareRepositoryInterface;
 use App\Domain\Marketdata\Entity\Candle;
 use App\Domain\Marketdata\Factory\CandleFactory;
+use DateTimeImmutable;
+use DateTimeInterface;
 
 final class CandleBuilder
 {
@@ -27,12 +29,20 @@ final class CandleBuilder
 
         return $this->candleFactory->create(
             share: $share,
-            startDate: $dto->startDate,
+            startDate: $this->transformStringToDatetime($dto->startDate),
             openPrice: $dto->openPrice,
             closePrice: $dto->closePrice,
             maxPrice: $dto->maxPrice,
             minPrice: $dto->minPrice,
             volume: $dto->volume,
         );
+    }
+
+    /**
+     * TODO: move data transform back to Console/Marketdata/History/Import/Fetcher/ResponseTransformer.php (memory problem)
+     */
+    private function transformStringToDatetime(string $date): DateTimeImmutable
+    {
+        return DateTimeImmutable::createFromFormat(DateTimeInterface::ATOM, $date);
     }
 }
