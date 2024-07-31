@@ -15,6 +15,13 @@ services:
       - 'App\Domain\Trader\Entity\Trader'
     tags: [ 'doctrine.repository_service' ]
 
+  app.infrastructure.doctrine.repository.trade_repository:
+    class: App\Infrastructure\Doctrine\Repository\TradeRepository
+    arguments:
+      - '@doctrine'
+      - 'App\Domain\Trader\Entity\Trade'
+    tags: [ 'doctrine.repository_service' ]
+
   app.infrastructure.doctrine.repository.broker_repository:
     class: App\Infrastructure\Doctrine\Repository\BrokerRepository
     arguments:

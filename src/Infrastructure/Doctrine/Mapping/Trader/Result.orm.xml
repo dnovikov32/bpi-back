@@ -22,14 +22,14 @@
         </unique-constraints>
 
         <many-to-one field="trader" target-entity="App\Domain\Trader\Entity\Trader">
-            <join-column name="trader_id" referenced-column-name="id" />
+            <join-column name="trader_id" referenced-column-name="id" nullable="false" />
             <cascade>
                 <cascade-persist />
             </cascade>
         </many-to-one>
 
         <many-to-one field="broker" target-entity="App\Domain\Trader\Entity\Broker">
-            <join-column name="broker_id" referenced-column-name="id" />
+            <join-column name="broker_id" referenced-column-name="id" nullable="false" />
             <cascade>
                 <cascade-persist />
             </cascade>

@@ -1,0 +1,31 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Domain\Trader\Entity\Trade" table="trader_trade" repository-class="App\Infrastructure\Doctrine\Repository\TradeRepository">
+        <id name="id" column="id" type="string" length="26">
+            <generator strategy="NONE" />
+        </id>
+        <field name="marketType" column="market_type" type="smallint" />
+        <field name="dateTime" column="date_time" type="datetime_immutable" />
+        <field name="price" column="price" type="float" />
+        <field name="volume" column="volume" type="integer" />
+
+        <many-to-one field="trader" target-entity="App\Domain\Trader\Entity\Trader">
+            <join-column name="trader_id" referenced-column-name="id" nullable="false" />
+        </many-to-one>
+
+        <many-to-one field="share" target-entity="App\Domain\Instrument\Entity\Share">
+            <join-column name="share_id" referenced-column-name="id" nullable="false" />
+        </many-to-one>
+
+        <indexes>
+            <index columns="trader_id" name="trader_trade_trader_id_idx" />
+            <index columns="share_id" name="trader_trade_share_id_idx" />
+            <index columns="date_time" name="trader_trade_date_time_idx" />
+        </indexes>
+
+    </entity>
+
+</doctrine-mapping>
