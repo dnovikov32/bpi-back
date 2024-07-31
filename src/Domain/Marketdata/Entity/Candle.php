@@ -16,11 +16,11 @@ class Candle implements EntityInterface
     public function __construct(
         private readonly string $id,
         private readonly Share $share,
-        private readonly DateTimeImmutable $startDate,
-        private readonly float $openPrice,
-        private readonly float $closePrice,
-        private readonly float $maxPrice,
-        private readonly float $minPrice,
+        private readonly DateTimeImmutable $dateTime,
+        private readonly float $open,
+        private readonly float $close,
+        private readonly float $high,
+        private readonly float $low,
         private readonly int $volume,
     ) {
     }
@@ -35,29 +35,29 @@ class Candle implements EntityInterface
         return $this->share;
     }
 
-    public function getStartDate(): DateTimeImmutable
+    public function getDateTime(): DateTimeImmutable
     {
-        return $this->startDate;
+        return $this->dateTime;
     }
 
-    public function getOpenPrice(): float
+    public function getOpen(): float
     {
-        return $this->openPrice;
+        return $this->open;
     }
 
-    public function getClosePrice(): float
+    public function getClose(): float
     {
-        return $this->closePrice;
+        return $this->close;
     }
 
-    public function getMaxPrice(): float
+    public function getHigh(): float
     {
-        return $this->maxPrice;
+        return $this->high;
     }
 
-    public function getMinPrice(): float
+    public function getLow(): float
     {
-        return $this->minPrice;
+        return $this->low;
     }
 
     public function getVolume(): int

@@ -18,22 +18,22 @@ final class CandleFactory
 
     public function create(
         Share $share,
-        DateTimeImmutable $startDate,
-        float $openPrice,
-        float $closePrice,
-        float $maxPrice,
-        float $minPrice,
+        DateTimeImmutable $dateTime,
+        float $open,
+        float $close,
+        float $high,
+        float $low,
         int $volume,
     ): Candle
     {
         return new Candle(
             id: $this->idService->generate(),
             share: $share,
-            startDate: $startDate,
-            openPrice: $openPrice,
-            closePrice: $closePrice,
-            maxPrice: $maxPrice,
-            minPrice: $minPrice,
+            dateTime: $dateTime,
+            open: $open,
+            close: $close,
+            high: $high,
+            low: $low,
             volume: $volume,
         );
     }

@@ -29,11 +29,11 @@ final class CandleBuilder
 
         return $this->candleFactory->create(
             share: $share,
-            startDate: $this->transformStringToDatetime($dto->startDate),
-            openPrice: $dto->openPrice,
-            closePrice: $dto->closePrice,
-            maxPrice: $dto->maxPrice,
-            minPrice: $dto->minPrice,
+            dateTime: $this->transformStringToDatetime($dto->dateTime),
+            open: $dto->open,
+            close: $dto->close,
+            high: $dto->high,
+            low: $dto->low,
             volume: $dto->volume,
         );
     }
@@ -41,8 +41,8 @@ final class CandleBuilder
     /**
      * TODO: move data transform back to Console/Marketdata/History/Import/Fetcher/ResponseTransformer.php (memory problem)
      */
-    private function transformStringToDatetime(string $date): DateTimeImmutable
+    private function transformStringToDatetime(string $dateTime): DateTimeImmutable
     {
-        return DateTimeImmutable::createFromFormat(DateTimeInterface::ATOM, $date);
+        return DateTimeImmutable::createFromFormat(DateTimeInterface::ATOM, $dateTime);
     }
 }

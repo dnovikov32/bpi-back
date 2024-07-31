@@ -61,3 +61,22 @@ bin/console app:trader:result:import 2022
 [Данные конкурса ЛЧИ для выгрузки](http://ftp.moex.com/pub/info/stats_contest)  
 [Tinkoff invest api](https://tinkoff.github.io/investAPI/)
 
+
+
+## TODO
+
+```sql
+select
+    date_bin('5 min', start_date, '2001-01-01') as interval_5min,
+    (array_agg(open_price ORDER BY start_date))[1] as open_price,
+    (array_agg(close_price ORDER BY start_date DESC))[1] as close_price,
+    max(max_price) as max_price,
+    min(min_price) as min_price,
+    sum(volume) as volume
+from marketdata_candle
+where share_id = '01J3GGC7CFS1H02S1G7HPGH3Y7'
+and start_date >= '2024-07-28 00:00:00'
+and start_date <= '2024-07-28 23:59:59'
+group by interval_5min
+order by interval_5min desc
+```

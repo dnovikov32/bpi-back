@@ -22,7 +22,7 @@ class CandleRepository extends ServiceEntityRepository implements CandleReposito
         $this->createQueryBuilder('c')
             ->delete()
             ->andWhere('c.share = :shareId')
-            ->andWhere("DATE_PART('year', c.startDate) = :year")
+            ->andWhere("DATE_PART('year', c.dateTime) = :year")
             ->setParameters([
                 ':shareId' => $shareId,
                 ':year' => $year,

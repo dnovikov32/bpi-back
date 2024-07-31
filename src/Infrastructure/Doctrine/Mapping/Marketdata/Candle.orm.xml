@@ -7,11 +7,11 @@
         <id name="id" column="id" type="string" length="26">
             <generator strategy="NONE" />
         </id>
-        <field name="startDate" column="start_date" type="datetime_immutable" />
-        <field name="openPrice" column="open_price" type="float" />
-        <field name="closePrice" column="close_price" type="float" />
-        <field name="maxPrice" column="max_price" type="float" />
-        <field name="minPrice" column="min_price" type="float" />
+        <field name="dateTime" column="date_time" type="datetime_immutable" />
+        <field name="open" column="open" type="float" />
+        <field name="close" column="close" type="float" />
+        <field name="high" column="high" type="float" />
+        <field name="low" column="low" type="float" />
         <field name="volume" column="volume" type="integer" />
 
         <many-to-one field="share" target-entity="App\Domain\Instrument\Entity\Share">
@@ -19,7 +19,7 @@
         </many-to-one>
 
         <indexes>
-            <index columns="start_date" name="marketdata_candle_start_date_idx" />
+            <index columns="date_time" name="marketdata_candle_date_time_idx" />
             <index columns="share_id" name="marketdata_candle_share_id_idx" />
         </indexes>
     </entity>

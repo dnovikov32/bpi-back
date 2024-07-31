@@ -135,11 +135,11 @@ class ResponseTransformer implements ResponseTransformerInterface
 
             $candles[] = new ImportCandleDto(
                 instrumentUid: $columns[0],
-                startDate: $columns[1],
-                openPrice: (float) $columns[2],
-                closePrice: (float) $columns[3],
-                maxPrice: (float) $columns[4],
-                minPrice: (float) $columns[5],
+                dateTime: $columns[1],
+                open: (float) $columns[2],
+                close: (float) $columns[3],
+                high: (float) $columns[4],
+                low: (float) $columns[5],
                 volume: (int) $columns[6],
             );
         }
