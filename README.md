@@ -51,6 +51,12 @@ Import all traders by 2022 year
 bin/console app:trader:trader:import 2022
 ```
 
+
+Import trades by year, trader moex id and market type
+```bash
+bin/console app:trader:trade:import 2022 310910 1
+```
+
 Import results by year
 ```bash
 bin/console app:trader:result:import 2022
@@ -80,3 +86,18 @@ where share_id = '01J3GGC7CFS1H02S1G7HPGH3Y7'
 group by interval
 order by interval desc
 ```
+
+
+
+TQBR позволяет осуществлять сделки с акциями.
+
+BOARDID на Московской бирже – это уникальный цифровой идентификатор торговой площадки или режима торгов, в рамках которого проходят торги различными финансовыми инструментами.
+
+Каждой торговой площадке на Мосбирже присваивается свой BOARDID:  
+
+- BOARDID=TQBR – основная площадка для акций и облигаций (Торгово-Quotation Board)  
+- BOARDID=TQTF – площадка для биржевых ETF и паев ПИФов  
+- BOARDID=EQBR – площадка для торговли акциями малой капитализации  
+- BOARDID=FQBR – площадка для корпоративных и муниципальных облигаций и т.д.  
+
+Этот идентификатор широко используется в отчетности и API Московской биржи.  

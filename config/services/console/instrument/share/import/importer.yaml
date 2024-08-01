@@ -4,6 +4,6 @@ services:
     arguments:
       - '@app.infrastructure.tinkoff_api.clients_factory'
       - '@app.domain.instrument.builder.share_builder'
-      - '@app.domain.instrument.repository.share_repository_interface'
+      - '@app.infrastructure.doctrine.bulk_persister'
     calls:
       - setLogger: ['@logger']

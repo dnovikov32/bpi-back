@@ -15,10 +15,11 @@ class Share implements EntityInterface
         private string $figi,
         private string $ticker,
         private string $isin,
+        private string $uid,
+        private string $classCode,
         private int $lot,
         private string $currency,
         private string $name,
-        private string $uid,
         private ?DateTimeImmutable $first1minCandleDate,
         private ?DateTimeImmutable $first1dayCandleDate,
     ) {
@@ -44,6 +45,16 @@ class Share implements EntityInterface
         return $this->isin;
     }
 
+    public function getUid(): string
+    {
+        return $this->uid;
+    }
+
+    public function getClassCode(): string
+    {
+        return $this->classCode;
+    }
+
     public function getLot(): int
     {
         return $this->lot;
@@ -57,11 +68,6 @@ class Share implements EntityInterface
     public function getName(): string
     {
         return $this->name;
-    }
-
-    public function getUid(): string
-    {
-        return $this->uid;
     }
 
     public function getFirst1minCandleDate(): ?DateTimeImmutable
@@ -79,10 +85,11 @@ class Share implements EntityInterface
         $this->figi = $dto->figi;
         $this->ticker = $dto->ticker;
         $this->isin = $dto->isin;
+        $this->uid = $dto->uid;
+        $this->classCode = $dto->classCode;
         $this->lot = $dto->lot;
         $this->currency = $dto->currency;
         $this->name = $dto->name;
-        $this->uid = $dto->uid;
         $this->first1minCandleDate = $dto->first1minCandleDate;
         $this->first1dayCandleDate = $dto->first1dayCandleDate;
 

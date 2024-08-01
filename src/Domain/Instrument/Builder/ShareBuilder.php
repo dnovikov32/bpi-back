@@ -21,7 +21,7 @@ final class ShareBuilder
     public function updateOrCreate(ShareDto $dto): Share
     {
         try {
-            $share = $this->shareRepository->findByTicker($dto->ticker);
+            $share = $this->shareRepository->findByUid($dto->uid);
             $share->update($dto);
         } catch (EntityNotFoundException) {
             $share = $this->shareFactory->create($dto);

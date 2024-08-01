@@ -22,10 +22,11 @@ final class ShareFactory
             figi: $dto->figi,
             ticker: $dto->ticker,
             isin: $dto->isin,
+            uid: $dto->uid,
+            classCode: $dto->classCode,
             lot: $dto->lot,
             currency: $dto->currency,
             name: $dto->name,
-            uid: $dto->uid,
             first1minCandleDate: $dto->first1minCandleDate,
             first1dayCandleDate: $dto->first1dayCandleDate,
         );

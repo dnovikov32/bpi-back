@@ -10,19 +10,20 @@
         <field name="figi" column="figi" length="12" />
         <field name="ticker" column="ticker" length="32" />
         <field name="isin" column="isin" length="12" />
+        <field name="uid" column="uid" length="36" />
+        <field name="classCode" column="class_code" length="20" />
         <field name="lot" column="lot" type="integer" />
         <field name="currency" column="currency" length="3" />
         <field name="name" column="name" length="255" />
-        <field name="uid" column="uid" length="36" />
         <field name="first1minCandleDate" column="first_1min_candle_date" type="datetime_immutable" nullable="true" />
         <field name="first1dayCandleDate" column="first_1day_candle_date" type="datetime_immutable" nullable="true" />
 
         <indexes>
+            <index columns="ticker" name="instrument_share_ticker_idx" />
             <index columns="figi" name="instrument_share_figi_idx" />
         </indexes>
 
         <unique-constraints>
-            <unique-constraint columns="ticker" name="instrument_share_ticker_unq" />
             <unique-constraint columns="uid" name="instrument_share_uid_unq" />
         </unique-constraints>
     </entity>
