@@ -4,60 +4,28 @@ declare(strict_types=1);
 
 namespace App\Console\Instrument\Share\Import;
 
-use App\Common\Importer\ImporterInterface;
 use App\Common\Importer\ImportOptionsInterface;
-use Exception;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
-use Symfony\Component\Console\Command\Command as SymfonyCommand;
-use Symfony\Component\Console\Helper\ProgressBar;
+use App\Console\Common\BaseImportFromApiWithProgressbar;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 use Tinkoff\Invest\V1\InstrumentStatus;
 
-final class Command extends SymfonyCommand implements LoggerAwareInterface
+final class Command extends BaseImportFromApiWithProgressbar
 {
-    use LoggerAwareTrait;
-
-    public function __construct(
-        private readonly ImporterInterface $apiImporter,
-    ) {
-        parent::__construct();
-    }
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function configure(): void
     {
-        $io = new SymfonyStyle($input, $output);
-        $io->title('Shares import from API started');
-
-        try {
-            $progressBar = new ProgressBar($output);
-            $progressBar->start();
-
-            $this->apiImporter->import($this->getImportOptions($progressBar));
-
-            $progressBar->finish();
-        } catch (Exception $e) {
-            $this->logger->error(
-                sprintf('Shares import failed %s from API. %s', $this->getName(), $e->getMessage()),
-                ['exception' => $e]
-            );
-
-            $io->error(sprintf('Shares import failed: %s', $e->getMessage()));
-
-            return self::FAILURE;
-        }
-
-        $io->success('Shares import completed');
-
-        return self::SUCCESS;
+        $this->addArgument(
+            'instrumentStatus',
+            InputArgument::OPTIONAL,
+            'Status of requested instruments (default: all instruments)',
+            InstrumentStatus::INSTRUMENT_STATUS_ALL
+        );
     }
 
-    private function getImportOptions(ProgressBar $progressBar): ImportOptionsInterface
+    protected function getImportOptions(InputInterface $input): ImportOptionsInterface
     {
         return new Options(
-            instrumentStatus: InstrumentStatus::INSTRUMENT_STATUS_BASE,
-            progressBar: $progressBar,
+            instrumentStatus: (int) $input->getArgument('instrumentStatus'),
         );
     }
 }

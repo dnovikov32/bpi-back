@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Domain\Instrument\Entity;
 
+use App\Domain\Common\Entity\EntityInterface;
 use App\Domain\Instrument\Dto\ShareDto;
 use DateTimeImmutable;
 
-class Share
+class Share implements EntityInterface
 {
     public function __construct(
         private string $id,
