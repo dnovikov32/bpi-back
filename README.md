@@ -41,25 +41,24 @@ http://localhost:8081/
 
 ## Commands
 
-Import all shares fromTinkoff API
+Import all shares from Tinkoff API
 ```bash
 bin/console app:instrument:share:import
 ```
 
-Import all traders by 2022 year
+Import all traders by 2022 year from MOEX
 ```bash
-bin/console app:trader:trader:import 2022
+bin/console app:trader:trader:import 2023
 ```
 
-
-Import trades by year, trader moex id and market type
+Import all trader trades by year, trader moex id and market type from MOEX
 ```bash
-bin/console app:trader:trade:import 2022 310910 1
+bin/console app:trader:trade:import 2023 310910 1
 ```
 
-Import results by year
+Import results by year from MOEX
 ```bash
-bin/console app:trader:result:import 2022
+bin/console app:trader:result:import 2023
 ```
 
 ## Info

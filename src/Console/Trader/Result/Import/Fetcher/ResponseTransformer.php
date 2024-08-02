@@ -27,6 +27,7 @@ class ResponseTransformer implements ResponseTransformerInterface
     {
         try {
             $rows = $this->getResponseContentAsArray($httpResponse);
+            $brokers = [];
             $results = [];
 
             foreach ($rows as $row) {
@@ -36,13 +37,17 @@ class ResponseTransformer implements ResponseTransformerInterface
                     continue;
                 }
 
+                $brokerName = $this->convertEncoding($columns[4]);
+
+                $brokers[$brokerName] = $brokerName;
+
                 $results[] = new ImportResultDto(
                     year: $request->year,
                     relevantDate: $this->transformToDatetime($columns[0]),
                     traderMoexId: (int) $columns[1],
                     traderName: $this->convertEncoding($columns[3]),
                     marketName: $this->convertEncoding($columns[2]),
-                    brokerName: $this->convertEncoding($columns[4]),
+                    brokerName: $brokerName,
                     startDate: $this->transformToDatetime($columns[6]),
                     profitPercentage: (float) $columns[7],
                     initialCapital: (float) $columns[8],
@@ -53,7 +58,7 @@ class ResponseTransformer implements ResponseTransformerInterface
                 );
             }
 
-            return new Response($results);
+            return new Response($results, $brokers);
         } catch (Throwable $e) {
             throw new TransformFailedException(sprintf('Deserialization error: %s', $e->getMessage()), $e->getCode(), $e);
         }

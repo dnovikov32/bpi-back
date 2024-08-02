@@ -11,9 +11,11 @@ class Response implements ResponseInterface
 {
     /**
      * @param ImportResultDto[] $results
+     * @param string[] $brokers
      */
     public function __construct(
-        public readonly array $results
+        public readonly array $results,
+        public readonly array $brokers,
     ) {
     }
 }
