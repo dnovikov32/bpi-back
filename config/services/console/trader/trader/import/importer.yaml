@@ -4,6 +4,4 @@ services:
     arguments:
       - '@app.console.trader.trader.import.fetcher'
       - '@app.domain.trader.service.trader_builder'
-      - '@app.domain.trader.repository.trader_repository_interface'
-    calls:
-      - setLogger: ['@logger']
+      - '@app.infrastructure.doctrine.bulk_persister'

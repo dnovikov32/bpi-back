@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Trader\Entity;
 
-class Broker
+use App\Domain\Common\Entity\EntityInterface;
+
+class Broker implements EntityInterface
 {
     public function __construct(
         private string $id,

@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Domain\Trader\Entity;
 
+use App\Domain\Common\Entity\EntityInterface;
 use App\Domain\Trader\Dto\ResultDto;
 use DateTimeImmutable;
 
-class Result
+class Result implements EntityInterface
 {
     public function __construct(
         private string $id,

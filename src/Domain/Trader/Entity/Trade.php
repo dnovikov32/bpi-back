@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Domain\Trader\Entity;
 
+use App\Domain\Common\Entity\EntityInterface;
 use App\Domain\Instrument\Entity\Share;
 use DateTimeImmutable;
 
-class Trade
+class Trade implements EntityInterface
 {
     public function __construct(
         private string $id,
