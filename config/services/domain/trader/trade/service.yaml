@@ -1,0 +1,11 @@
+services:
+  app.domain.trader.factory.trade_factory:
+    class: App\Domain\Trader\Factory\TradeFactory
+    arguments:
+      - '@app.domain.common.service.id_service'
+
+  app.domain.trader.service.trade_deleter:
+    class: App\Domain\Trader\Service\TradeDeleter
+    arguments:
+      - '@app.domain.trader.repository.trader_repository_interface'
+      - '@app.domain.trader.repository.trade_repository_interface'

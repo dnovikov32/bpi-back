@@ -9,4 +9,6 @@ use App\Domain\Trader\Entity\Trade;
 interface TradeRepositoryInterface
 {
     public function save(Trade $trader): void;
+
+    public function deleteAllByTraderIdAndMarketType(string $traderId, int $marketType): void;
 }

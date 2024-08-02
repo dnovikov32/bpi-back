@@ -1,0 +1,9 @@
+services:
+  app.console.trader.trade.import.command:
+    class: App\Console\Trader\Trade\Import\Command
+    arguments:
+      - '@app.console.trader.trade.import.importer'
+    calls:
+      - setLogger: ['@logger']
+    tags:
+      - { name: console.command, command: 'app:trader:trade:import', description: 'Import all BPI trader trades by year and trader moex id' }

@@ -51,15 +51,16 @@ Import all traders by 2022 year from MOEX
 bin/console app:trader:trader:import 2023
 ```
 
-Import all trader trades by year, trader moex id and market type from MOEX
-```bash
-bin/console app:trader:trade:import 2023 310910 1
-```
-
 Import results by year from MOEX
 ```bash
 bin/console app:trader:result:import 2023
 ```
+
+Import all trader trades by year, trader moex id and market type from MOEX
+```bash
+bin/console app:trader:trade:import 2023 332591 1
+```
+
 
 ## Info
 [Статистика конкурса ЛЧИ](https://investor.moex.com/ru/statistics/2022/)  

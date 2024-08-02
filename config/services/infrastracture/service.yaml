@@ -19,3 +19,6 @@ services:
     arguments:
       - '@doctrine.orm.entity_manager'
       - '%app.doctrine.batch_size.default%'
+
+  app.infrastructure.common.file.file_helper:
+    class: App\Infrastructure\Common\File\FileHelper

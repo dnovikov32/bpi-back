@@ -1,0 +1,15 @@
+services:
+  app.console.trader.trade.import.importer:
+    class: App\Console\Trader\Trade\Import\Importer
+    arguments:
+      - '@app.console.trader.trade.import.fetcher'
+      - '@app.console.trader.trade.import.builder.trade_builder'
+      - '@app.domain.trader.service.trade_deleter'
+      - '@app.infrastructure.doctrine.bulk_persister'
+
+  app.console.trader.trade.import.builder.trade_builder:
+    class: App\Console\Trader\Trade\Import\Builder\TradeBuilder
+    arguments:
+      - '@app.domain.trader.repository.trader_repository_interface'
+      - '@app.domain.instrument.repository.share_repository_interface'
+      - '@app.domain.trader.factory.trade_factory'

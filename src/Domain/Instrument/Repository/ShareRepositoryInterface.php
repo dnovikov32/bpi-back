@@ -6,6 +6,7 @@ namespace App\Domain\Instrument\Repository;
 
 use App\Domain\Common\Exception\EntityNotFoundException;
 use App\Domain\Instrument\Entity\Share;
+use App\Domain\Instrument\Enum\ClassCode;
 
 interface ShareRepositoryInterface
 {
@@ -14,7 +15,7 @@ interface ShareRepositoryInterface
     /**
      * @throws EntityNotFoundException
      */
-    public function findByTicker(string $ticker): Share;
+    public function findByTickerAndClassCode(string $ticker, ClassCode $classCode): Share;
 
     /**
      * @throws EntityNotFoundException
