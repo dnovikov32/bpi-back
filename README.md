@@ -8,6 +8,9 @@ View the results of the Best Private Investor competition
 
 ## Local development
 
+Download and run [bpi-trafik](https://github.com/dnovikov32/bpi-traefik) build
+to combine back and front applications into one network.
+
 Copy environment file:
 ```bash
 cp .env.dist .env

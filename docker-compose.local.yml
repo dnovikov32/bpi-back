@@ -1,7 +1,8 @@
 version: '3.9'
 
 networks:
-  bpi-back:
+  bpi-traefik:
+    external: true
 
 volumes:
   postgres_volume:
@@ -28,7 +29,7 @@ services:
       - 9000
       - 9009
     networks:
-      - bpi-back
+      - bpi-traefik
 
   nginx:
     container_name: bpi-back-nginx
@@ -44,11 +45,15 @@ services:
       - ./.:/app
     depends_on:
       - php
-    ports:
-      - "80:80"
-      - "443:443"
+    expose:
+      - 80
     networks:
-      - bpi-back
+      - bpi-traefik
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=bpi-traefik
+      - traefik.http.routers.${APP_NAME}.rule=Host(`${SITE_HOST}`)
+      - traefik.http.routers.${APP_NAME}.entrypoints=http
 
   postgres:
     container_name: bpi-back-postgres
@@ -67,7 +72,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - bpi-back
+      - bpi-traefik
 
   swagger:
     image: swaggerapi/swagger-ui
